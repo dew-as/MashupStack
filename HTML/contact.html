@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+	<div style="text-align: center;">
+		<h1>Contact us page</h1>
+<form>
+	<label for="name">Name</label><br>
+	<input type="text" name="name" id="name" required><br><br>
+	<label for="mobile">Mobile number</label>
+	<input type="tel" pattern=[0-9]{10} name="mobile" id="mobile"required>
+	<label>Type of communication</label>
+	<select>
+		<option>sales</option>
+		<option selected>service</option>
+		<option>enquiry</option>
+		<option>advertisement</option>
+		<option>complaint</option>
+	</select><br><br>
+	<label for="email">Email</label><br>
+	<input type="email" name="email" id="email"placeholder="News18@gmail.com" autofocus required><br><br>
+	<textarea rows="6" cols="50" placeholder="Description..."></textarea><br><br>
+
+	<button style="background-color: grey; color:white;">submit</button><br><br>
+    <a href="newslisting.html">Back</a>
+</form>
+	</div>
+</body>
+</html>

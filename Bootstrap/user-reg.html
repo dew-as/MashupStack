@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Registration</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body class="d-flex align-items-center" style="height:100vh;">
+	<div class="container border p-5 rounded">
+		<h2 class="text-info text-center">Register</h2>
+		<div class="form-group">
+      <label class="text-info" for="text">Username:</label>
+      <input type="text" class="form-control" id="text" placeholder="Enter Username" name="text">
+    </div>
+		<div class="form-group">
+      <label class="text-info" for="email">Email:</label>
+      <div class="input-group mb-3 input-group-sm">
+     <div class="input-group-prepend">
+       <span class="input-group-text">@</span>
+    </div>
+    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+  </div>  
+    </div>
+    <div class="form-group">
+      <label class="text-info" for="phone">Contact:</label>
+      <div class="input-group mb-3 input-group-sm">
+     <div class="input-group-prepend">
+       <span class="input-group-text">+91</span>
+    </div>
+    <input type="number" class="form-control" id="phone" placeholder="Phonenumber" name="phone">
+  </div>
+    </div>
+    <div class="form-group">
+      <label class="text-info" for="pwd">Password:</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+    </div>
+      <div class="row">
+          <div class="col-12 col-md-2 mx-auto ml-lg-0">
+            <button type="submit" class="btn btn-outline-info text-secondary w-100 mt-4">Register</button>
+          </div>
+        </div>
+	</div>
+</body>
+</html>

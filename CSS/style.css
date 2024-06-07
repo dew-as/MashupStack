@@ -1,0 +1,19 @@
+.heading{
+	font-weight: bold;
+}
+.paragraph{
+	font-style: italic;
+}
+#paragraph1{
+	color: red;
+}
+#paragraph2{
+	color: blue;
+}
+#paragraph3{
+	color: green;
+}
+.task{
+	text-align: center;
+		}
+

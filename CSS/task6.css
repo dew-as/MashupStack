@@ -1,0 +1,51 @@
+body{
+	margin: 0;
+	padding: 0;
+}
+*{
+	font-family: sans-serif;
+}
+.outer header{
+	background-color: black;
+	height: 80px;
+	display: flex;
+	gap: 50px;
+	justify-content: space-evenly;
+	align-items: center;
+}
+header .container{
+	display: flex;
+	gap: 30px;
+}
+.outer header a{
+	text-decoration: none;
+}
+.outer header a,.outer header h1{
+	color: white;
+}
+.outer header a:hover{
+	color: #f98d09;
+}
+.outer article{
+	width: 60%;
+	margin: auto;
+	text-align: center;
+	margin-top: 50px;
+	color: #6E767D;
+/*	background-color: #6E767D;*/
+}
+.outer article p{
+	text-align: justify;
+}
+.outer article h1::before{
+  content: "🥳";
+}
+article div:first-child{
+	border: 5px solid #f98d09;
+}
+article .box{
+	padding: 30px;
+}
+article p::first-line{
+	font-weight: bold;
+}
