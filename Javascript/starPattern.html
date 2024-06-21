@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <button onclick="starPrint()">Click</button>
+    <script>
+        const starsRow = parseInt(prompt("Enter Star Count Row"))
+        var star = "";
+        for (i=0;i<starsRow;i++){
+            for (j=0;j<=i;j++){
+                console.log("* ".repeat(i+1));
+                star+="* "
+            }
+            star+="<br>"
+            console.log("\n");
+        }
+        function starPrint () {
+            document.getElementById("demo").innerHTML = star
+        }
+    </script>
+</body>
+</html>

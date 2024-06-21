@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="seeTheNumbers()">See The Numbers</button>
+    <button onclick="seeWhichDifferent()">See Which Different</button>
+    <script>
+        const firstInput = parseInt(prompt("Enter First Number"))
+        const secondInput = parseInt(prompt("Enter Second Number"))
+
+        function seeTheNumbers () {
+            console.log(`First Number : ${firstInput}`);
+            console.log(`Second Number : ${secondInput}`);
+        }
+
+        function seeWhichDifferent () {
+            if ( firstInput > secondInput ) {
+                console.log(`First Number : ${firstInput} is greater than Second Number : ${secondInput}`);
+            } else if (firstInput < secondInput) {
+                console.log(`Second Number : ${secondInput} is greater than First Number : ${firstInput}`);
+            } else {
+                console.log("Both numbers are Same");
+            }
+        }
+    </script>
+</body>
+</html>
