@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p style="font-family: monospace;" id="omed">
+
+    </p>
+    <script>
+        const numbers = [6,16,4,8,23,34,7]
+        console.log("Numbers "+numbers);
+        numbers.sort(function( a , b ){ return a - b })
+        console.log("Sorted in Accending "+numbers);
+        _8thElementAdded = numbers.push(25)
+        console.log("Added 8th element "+numbers);
+        console.log("Highest Value "+Math.max.apply(null, numbers));
+        console.log("Lowest Value "+Math.min.apply(null, numbers));
+    </script>
+</body>
+</html>

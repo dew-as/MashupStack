@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const firstNumber = prompt("Enter First Number")
+        const secondNumber = prompt("Enter Second Number")
+        const resultAdd = function calculate () {
+            return  Number(firstNumber) + Number(secondNumber)
+        }
+        const resultSub = function calculate () {
+            return  Number(firstNumber) - Number(secondNumber)
+        }
+        const resultDev = function calculate () {
+            return  Number(firstNumber) / Number(secondNumber)
+        }
+        const resultMul = function calculate () {
+            return  Number(firstNumber) * Number(secondNumber)
+        }
+    </script>
+    <button onclick="this.innerHTML=firstNumber">Show First Number</button>
+    <button onclick="this.innerHTML=secondNumber">Show Second Number</button>
+    <button onclick="this.innerHTML=resultAdd()">Addition + with Both Numbers</button>
+    <button onclick="this.innerHTML=resultSub()">Substraction - with Both Numbers</button>
+    <button onclick="this.innerHTML=resultDev()">Devision / with Both Numbers</button>
+    <button onclick="this.innerHTML=resultMul()">Multiplication * with Both Numbers</button>
+</body>
+</html>

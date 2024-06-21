@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="demo"></h1>
+    <script>
+        const randomInt = function (max,min) {
+            const num = Math.floor(Math.random() * (max - min + 1 ) + min)
+            document.getElementById("demo").innerHTML = num
+            console.log(num);
+        }
+        randomInt(10,1)
+    </script>
+</body>
+</html>

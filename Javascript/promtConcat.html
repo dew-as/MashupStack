@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="concat"></h1>
+    <h1 id="lengthf"></h1>
+    <h1 id="lengthl"></h1>
+    <h1 id="upper"></h1>
+    <h1 id="last"></h1>
+    <script>
+        const firstName = prompt("Please enter your Firstname:");
+        const LastName = prompt("Please enter your Lastname:");
+        const fullName = firstName.concat(" ",LastName)
+        console.log(fullName);
+        var lengthOfFirstName = firstName.length;
+        var lengthOfLastName = LastName.length;
+        console.log(lengthOfFirstName);
+        console.log(lengthOfLastName);
+        var firstNameUpperCase = firstName.toUpperCase()
+        console.log(firstNameUpperCase);
+        var firstNameLast3 = firstName.substr(-3)
+        console.log(firstNameLast3);
+        document.getElementById('concat').innerHTML = 'Fullname : ' + fullName;
+        document.getElementById('lengthf').innerHTML = 'Length first name : ' + lengthOfFirstName;
+        document.getElementById('lengthl').innerHTML = 'Length second name : ' + lengthOfLastName;
+        document.getElementById('upper').innerHTML = 'Fullname uppercase : ' + firstNameUpperCase;
+        document.getElementById('last').innerHTML = 'Last 3 of firstname : ' + firstNameLast3;
+    </script>
+</body>
+</html>

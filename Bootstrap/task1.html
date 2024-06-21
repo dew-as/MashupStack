@@ -10,21 +10,21 @@
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body style="height: 100vh;" class="d-flex align-items-center">
-    <div class="container bg-primary px-5 pt-4">
+    <div class="container bg-primary px-5 pt-4  mx-3 m-sm-auto">
         <div class="card">
             <div class="card-header bg-white">
-                <h2>Sign Up</h2>
+                <h2 class="font-weight-bold">Sign Up</h2>
                 <p class="text-secondary">Please fill in this form to create an account!</p>
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-sm-6">
                         <div class="form-group">
                             <input type="text" class="form-control bg-light" id="fname" placeholder="First Name"/>
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="form-group">
+                    <div class="col-sm-6">
+                        <div class="form-group d-none d-sm-block">
                             <input type="text" class="form-control bg-light" id="lname" placeholder="Last Name"/>
                         </div>
                     </div>
@@ -48,7 +48,11 @@
                             <label>I accept the <a href="#">Terms of Use</a> & <a href="#">Privacy Policy</a>.</label>
                         </div>
                         </div>
-                        <button class="btn btn-primary w-25">Sign Up</button>
+                        <div class="row">
+                            <div class="col-12 col-md-3 mx-auto mx-lg-0">
+                                <button class="btn btn-primary w-100 font-weight-bold">Sign Up</button>
+                            </div>
+                        </div>
                     </div>
              </div>
              <p class="text-center text-white mt-3 text-bold">Already have an account? <b><a class="text-white" href="#"><u>Login here.</u></a></b></p>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is an example of Function Working look at console.</h1>
+    
+    <script language = "javascript" type = "text/javascript">
+        function func_1 (arg) {
+            func_2(arg);
+        }
+        function func_2 (pmt) {
+            func_3(pmt);
+        }
+        function func_3 (txt) {
+            var textFull = "Hello " + txt;
+            console.log(textFull);
+            return textFull;
+        }
+        var arg = "World"
+        func_1(arg);
+    </script>
+</body>
+</html>

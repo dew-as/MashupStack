@@ -39,9 +39,9 @@
                 
 <div id = "accordion" class="border bg-light mt-3">
     <div class = "card border-0">
-       <div class = "card-header bg-light border-0 px-3 py-1">
+       <div class = "card-header bg-light border-0 px-3 py-2">
           <a class = "card-link text-secondary text-uppercase h6" data-toggle = "collapse" href = "#collapseOne">
-             Accordion
+             Sidebar
           </a>
        </div>
        <div id = "collapseOne" class = "collapse show" data-parent = "#accordion">
@@ -54,13 +54,15 @@
        </div>
     </div>
     <div class = "card border-0">
-        <div class = "card-header border-0 bg-light px-3 py-1">
+        <div class = "card-header border-0 bg-light px-3 py-2">
            <a class = "card-link text-secondary h6 text-uppercase" data-toggle = "collapse" href = "#collapseOne">
-            Accordion
+            Sidebar
            </a>
         </div>
-        <div id = "collapseOne" class = "collapse show" data-parent = "#accordion">
+        <div id = "collapseOne" class = "collapse show" data-parent = "#Sidebar">
            <div class = "card-body bg-light border-0 p-0">
+             <p class="m-0 px-3"><a href="#">Link</a></p>
+             <p class="m-0 px-3"><a href="#">Link</a></p>
              <p class="m-0 px-3"><a href="#">Link</a></p>
              <p class="m-0 px-3"><a href="#">Link</a></p>
              <p class="m-0 px-3"><a href="#">Link</a></p>
@@ -69,17 +71,16 @@
         </div>
      </div>
      <div class = "card border-0">
-        <div class = "card-header border-0 bg-light px-3 py-1">
+        <div class = "card-header border-0 bg-light px-3 py-2">
            <a class = "card-link text-secondary h6 text-uppercase" data-toggle = "collapse" href = "#collapseOne">
-            Accordion
+            Sidebar
            </a>
         </div>
         <div id = "collapseOne" class = "collapse show" data-parent = "#accordion">
            <div class = "card-body bg-light border-0 p-0">
              <p class="m-0 px-3"><a href="#">Link</a></p>
              <p class="m-0 px-3"><a href="#">Link</a></p>
-             <p class="m-0 px-3"><a href="#">Link</a></p>
-             <p class="m-0 px-3"><a href="#">Link</a></p>
+             <p class="m-0 px-3 pb-2"><a href="#">Link</a></p>
             </div>
             </div>
             </div>
@@ -87,18 +88,35 @@
             </div>
             <div class="col-md-9">
                 <div class="col-12 mt-3 p-5 bg-light">
-                    <h1>Hello, world!</h1>
+                    <h1 class="font-weight-bold">Hello, world!</h1>
                     <p>This is a template for a simple marketing or informational website, It includes a large cailout called the hero unit and three supportingpieces of content.
                          Use it as a starting point to create something more unique.</p>
                          <div class="d-flex align-items-center">
-                            <button class="btn btn-primary">
+                            <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">
                                 Learn more 
                                 <span class="align-middle"><i class='bx bxs-chevrons-right'></i></span>
-                            </button>  
+                            </button>
+<div class="modal" id="myModal1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title">Modal Heading</h1>
+        <button type="button" class="close" data-dismiss="modal">×</button>
+      </div>
+      <div class="modal-body">
+        <h4>Some Text</h4>
+<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
                         </div>    
                 </div>
                 <div class="row mt-3">
-                    <div class="col-md-4 p-3"><h4>Hello, world!</h4>
+                    <div class="col-md-4 col-sm-6 p-3"><h4 class="font-weight-bold">Hello, world!</h4>
                         <p><small>This is a template for a simple marketing or informational website, It includes a large cailout called the hero unit and three supportingpieces of content.
                              Use it as a starting point to create something more unique.</small></p>
                              <div class="d-flex align-items-center">
@@ -107,7 +125,7 @@
                                     <span class="align-middle"><i class='bx bxs-chevrons-right'></i></span>
                                 </button>  
                             </div>    </div>
-                    <div class="col-md-4 p-3"><h4>Hello, world!</h4>
+                    <div class="col-md-4 col-sm-6 p-3"><h4 class="font-weight-bold">Hello, world!</h4>
                         <p><small>This is a template for a simple marketing or informational website, It includes a large cailout called the hero unit and three supportingpieces of content.
                              Use it as a starting point to create something more unique.</small></p>
                              <div class="d-flex align-items-center">
@@ -116,7 +134,7 @@
                                     <span class="align-middle"><i class='bx bxs-chevrons-right'></i></span>
                                 </button>  
                             </div>    </div>
-                    <div class="col-md-4 p-3"><h4>Hello, world!</h4>
+                    <div class="col-md-4 col-sm-6 p-3"><h4 class="font-weight-bold">Hello, world!</h4>
                         <p><small>This is a template for a simple marketing or informational website, It includes a large cailout called the hero unit and three supportingpieces of content.
                              Use it as a starting point to create something more unique.</small></p>
                              <div class="d-flex align-items-center">
@@ -125,7 +143,7 @@
                                     <span class="align-middle"><i class='bx bxs-chevrons-right'></i></span>
                                 </button>  
                             </div>    </div>
-                    <div class="col-md-4 p-3"><h4>Hello, world!</h4>
+                    <div class="col-md-4 col-sm-6 p-3"><h4 class="font-weight-bold">Hello, world!</h4>
                         <p><small>This is a template for a simple marketing or informational website, It includes a large cailout called the hero unit and three supportingpieces of content.
                              Use it as a starting point to create something more unique.</small></p>
                              <div class="d-flex align-items-center">
@@ -134,7 +152,7 @@
                                     <span class="align-middle"><i class='bx bxs-chevrons-right'></i></span>
                                 </button>  
                             </div>    </div>
-                    <div class="col-md-4 p-3"><h4>Hello, world!</h4>
+                    <div class="col-md-4 col-sm-6 p-3"><h4 class="font-weight-bold">Hello, world!</h4>
                         <p><small>This is a template for a simple marketing or informational website, It includes a large cailout called the hero unit and three supportingpieces of content.
                              Use it as a starting point to create something more unique.</small></p>
                              <div class="d-flex align-items-center">
@@ -143,7 +161,7 @@
                                     <span class="align-middle"><i class='bx bxs-chevrons-right'></i></span>
                                 </button>  
                             </div>    </div>
-                    <div class="col-md-4 p-3"><h4>Hello, world!</h4>
+                    <div class="col-md-4 col-sm-6 p-3"><h4 class="font-weight-bold">Hello, world!</h4>
                         <p><small>This is a template for a simple marketing or informational website, It includes a large cailout called the hero unit and three supportingpieces of content.
                              Use it as a starting point to create something more unique.</small></p>
                              <div class="d-flex align-items-center">
