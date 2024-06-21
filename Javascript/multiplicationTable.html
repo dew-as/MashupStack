@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <button class="btn btn-primary" onclick="takePrompt()">Take a number for multiplication table</button>
+        <table id="multiple" class="table mt-3 mb-3 border">
+        </table>
+        <button class="btn btn-primary" onclick="multiplyIt()">Multiple Table</button>
+    </div>
+    <script>
+        var number,table;
+        function takePrompt () {
+            number =parseInt(prompt("Enter Number For Multiplication Table"))
+        }
+
+        function multiplyIt(){
+            table = ""
+            for ( i=1 ; i<=10 ; i++) {
+                console.log(`${i} x ${number} = ${i*number}`);
+                // table = table + `${i} x ${number} = ${i*number} <br>`
+                table = table + `
+                <tr class="table-primary">
+                     <td>${i} x ${number} = ${i*number}</td>
+                </tr>`
+        }
+        document.getElementById("multiple").innerHTML = table;
+        console.log(table);
+        }
+    </script>
+</body>
+</html>
