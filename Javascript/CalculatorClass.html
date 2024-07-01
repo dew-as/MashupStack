@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="fnum" placeholder="first number">
+    <select id="operator">
+        <option>--select-operator--</option>
+        <option>+</option>
+        <option>-</option>
+        <option>x</option>
+        <option>/</option>
+        <option>%</option>
+    </select>
+    <input type="text" id="snum" placeholder="second number">
+    <button id="btn" onclick="resultMaker()">Calculate</button>
+    <p id="result"></p>
+
+    <script>
+        class Calculate {
+            constructor(fnum,operator,snum){
+                var result;
+                switch (operator) {
+                    case "+":
+                        result= fnum + snum;
+                        break;
+                    case "-":
+                        result= fnum - snum;
+                        break;    
+                    case "x":
+                        result= fnum * snum;
+                        break;
+                    case "/":
+                        if (snum==0) {
+                            result="Cannot devided By zero"
+                        } else {
+                            result= fnum / snum;
+                        }
+                        break;
+                    case "%":
+                        result= fnum % snum;
+                        break;
+                    default:
+                        break;
+                }
+                document.getElementById("result").innerHTML = result;
+                console.log(result);
+            }
+        }
+        function resultMaker(){
+            fnum = document.getElementById("fnum").value;
+            operator = document.getElementById("operator").value;
+            snum = document.getElementById("snum").value;
+            const result = new Calculate(Number(fnum),operator,Number(snum));
+        }
+    </script>
+</body>
+</html>

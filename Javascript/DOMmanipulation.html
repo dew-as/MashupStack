@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="display: flex; font-size: 50px; cursor: pointer; font-family: monospace;">
+         <!-- first list -->
+     <ul id="list1" style="list-style: none;">
+        <li id="Mango">Mango</li>
+        <li id="Banana">Banana</li>
+        <li id="JackFruit">JackFruit</li>
+        <li id="Mangosteen">Mangosteen</li>
+     </ul>
+     <!-- second list -->
+     <ul id="list2" style="list-style: none; cursor: pointer; font-family: monospace;">
+        <li id="Onion">Onion</li>
+        <li id="Tomato">Tomato</li>
+        <li id="Pepper">Pepper</li>
+        <li id="Grass">Carrot</li>
+     </ul>
+    </div>
+     <script>
+        var lists1 = document.querySelectorAll("#list1 li")
+        lists1.forEach(li => {
+            var originalUl = true;
+           li.addEventListener("click",()=>{
+            var id = li.id
+            console.log(id);
+            if (originalUl) {
+                const replaced = document.getElementById("list1").children[id];
+            console.log(replaced);
+            document.getElementById("list2").appendChild(replaced);
+            originalUl = false;
+            } else {
+                const replaced = document.getElementById("list2").children[id];
+            console.log(replaced);
+            document.getElementById("list1").appendChild(replaced);
+            originalUl = true;
+            }
+           })
+        });
+        var lists2 = document.querySelectorAll("#list2 li")
+        lists2.forEach(li => {
+            var originalUl = true;
+           li.addEventListener("click",()=>{
+            var id = li.id
+            console.log(id);
+            if (originalUl) {
+                const replaced = document.getElementById("list2").children[id];
+            console.log(replaced);
+            document.getElementById("list1").appendChild(replaced);
+            originalUl = false;
+            } else {
+                const replaced = document.getElementById("list1").children[id];
+            console.log(replaced);
+            document.getElementById("list2").appendChild(replaced);
+            originalUl = true;
+            }
+           }) 
+        });
+     </script>
+</body>
+</html>

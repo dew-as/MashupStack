@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<h1>Your Point : <span id="pointsOfYou">0 </span><br>Computer Point : <span id="pointsOfComputer">0</span></h1>
+    <button id="Stone">Stone</button>
+    <button id="Paper">Paper</button>
+    <button id="Scissors">Scissors</button>
+    <h3>You got : <span id="your"></span></h3>
+    <h3>Computer got : <span id="ans"></span></h3>
+    <p id="result"></p>
+<body>
+    <script>
+        var buttons = document.querySelectorAll("button")
+        var data = ["Stone","Paper","Scissors"]
+        var yourPoint = 0
+        var computerPoints = 0
+
+        buttons.forEach( button =>{
+            button.addEventListener("click",() => {
+                console.log(button.id);
+                document.getElementById("your").innerHTML = button.innerText
+                var random = data[Math.floor(Math.random()*data.length)];
+                document.getElementById("ans").innerHTML = random
+                if (random == button.innerText) {
+                    document.getElementById("result").innerHTML = "Both are same"
+                } else if (random == "Stone" && button.innerText == "Paper"){
+                    document.getElementById("result").innerHTML = "You win"
+                    yourPoint++
+                }else if (random == "Stone" && button.innerText == "Scissors"){
+                    document.getElementById("result").innerHTML = "Computer win"
+                    computerPoints++
+                }else if (random == "Paper" && button.innerText == "Scissors"){
+                    document.getElementById("result").innerHTML = "You win"
+                    yourPoint++
+                }else if (random == "Paper" && button.innerText == "Stone"){
+                    document.getElementById("result").innerHTML = "Computer win"
+                    computerPoints++
+                }else if (random == "Scissors" && button.innerText == "Stone"){
+                    document.getElementById("result").innerHTML = "You win"
+                    yourPoint++
+                }else if (random == "Scissors" && button.innerText == "Paper"){
+                    document.getElementById("result").innerHTML = "Computer win"
+                    computerPoints++
+                }
+                document.getElementById("pointsOfYou").innerHTML = yourPoint + " "
+                document.getElementById("pointsOfComputer").innerHTML = computerPoints
+            })
+        })
+    </script>
+</body>
+</html>
