@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1 id="result"></h1>
+  <script>
+    let stringFromUser = prompt("Enter a string")
+    let enteredForCheck = prompt("Enter a character to check")
+    var patt1 = new RegExp(enteredForCheck, 'ig')
+    var occurence = stringFromUser.match(patt1)
+    if (occurence !== null) {
+      console.log(occurence.length)
+      document.getElementById("result").innerHTML = "Number of occurrences: " + occurence.length;
+    } else {
+      document.getElementById("result").innerHTML = "Character not found"
+    }
+  </script>
+</body>
+</html>

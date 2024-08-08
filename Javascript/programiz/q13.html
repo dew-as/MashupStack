@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="result"></h1>
+    <script>
+        let number = Number(prompt("Enter a positive number"))
+        let result,isPrime = true
+
+        if (isNaN(number)) {
+            result = "Not a number"
+        }
+        else if (number < 0 || number === 0) {
+            result = "Number is negative or zero"
+        } else if(number === 1){
+            result = "Number is 1 so cant check prime or not"
+        } else {
+            for(i=2;i<number;i++){
+                if (number % i === 0) {
+                    isPrime = false
+                    break
+                }
+            }
+            if (isPrime) {
+                result = "Number is Prime"
+            }else{
+                result = "Not a prime"
+            }
+        }
+        document.getElementById("result").innerHTML = `${number} ${result}`
+    </script>
+</body>
+</html>

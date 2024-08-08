@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3 id="numbers"></h3>
+    <h1 id="result"></h1>
+
+    <script>
+        let numbers = [1,4,23,12,56,100,67]
+
+        document.getElementById("numbers").innerHTML = numbers.map((number)=>number)
+
+        let sorted = numbers.sort((a,b)=>a-b)
+
+        document.getElementById("result").innerHTML = sorted.slice(-3)
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let person = {
+            name : "earthking",
+            age : 40,
+            getName : () => name + age
+        }
+        let personInstance = new Object ({
+            name : "earthking",
+            age : 40,
+            getName : () => name + age
+        })
+        class personClass{
+            constructor(name,age){
+                this.name = name,
+                this.age = age
+            }
+            getName =() => this.name + this.age
+        }
+        let personClssed = new personClass("earthking",40)
+        console.log(typeof(person))
+        console.log(typeof(personInstance))
+        console.log(typeof(personClssed))
+        console.log(personClssed.getName())
+    </script>
+</body>
+</html>

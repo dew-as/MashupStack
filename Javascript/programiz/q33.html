@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="result"></h1>
+    <script>
+    var test = prompt("enter a word")
+    var testArray = test.split("")
+    var Arraylength = testArray.length
+    var isPali = true
+
+    for(let i=0;i<Arraylength/2+1;i++){
+        if(testArray[i] != testArray[Arraylength-1]) {
+            isPali = false
+            break
+        }
+        Arraylength--
+    }
+
+    if(isPali === true){
+        console.log(test+" this is a paliandrome")
+        document.getElementById("result").innerHTML = test+" this is a paliandrome"
+    }else{
+        console.log(test+" this is not a paliandrome")
+        document.getElementById("result").innerHTML = test+" this is not a paliandrome"
+        isPali = true
+    }
+</script>
+</body>
+</html>

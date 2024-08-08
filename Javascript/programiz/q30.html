@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="result"></h1>
+    <script>
+        let needed = Number(prompt("Factorial of which number needed"))
+        let factorial = []
+
+        takeFactorial = (n) => {
+            if(n == 0 ){
+                return n
+            }else {
+                if(needed % n == 0){
+                return factorial.push(n) + takeFactorial(n-1)
+            }else {
+                return takeFactorial(n-1)
+            }
+            }
+        }
+
+        takeFactorial(needed)
+
+        document.getElementById("result").innerHTML = factorial
+    </script>
+</body>
+</html>

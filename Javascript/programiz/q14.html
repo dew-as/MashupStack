@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="result"></h1>
+    <!-- <button onclick="findPrimes()">Click to find Prime Numbers</button> -->
+    <script>
+        let interval1 = Number(prompt("Enter Starting Interval"))
+        let interval2 = Number(prompt("Enter Ending Interval"))
+        let primeNumbers = []
+        let isPrime = true
+
+            const findPrimes = () => {
+                if (isNaN(interval1) || isNaN(interval2)) {
+                primeNumbers = "Not a number"
+            }else{
+            for(i=interval1;i<interval2;i++){
+            for(j=2;j<i;j++){
+                if(i % j === 0){
+                    isPrime = false
+                    break
+                }
+            }
+            if(isPrime){
+                console.log(i)
+                primeNumbers.push(i)
+            }else{
+                isPrime = true
+            }
+        }
+        }
+        document.getElementById("result").innerHTML = primeNumbers.map((prime)=>prime+" ")
+        }
+        findPrimes()
+    </script>
+</body>
+</html>

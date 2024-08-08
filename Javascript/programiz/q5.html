@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="before"></h1>
+    <h1 id="after"></h1>
+    <button onclick="(swap())">Swap</button>
+    <script>
+        let num1 = Number(prompt("Enter first number"))
+        let num2 = Number(prompt("Enter second number"))
+
+        console.log(`Before Swap - num1-${num1} num2-${num2}`);
+        document.getElementById("before").innerHTML = `Before Swap - num1-${num1} num2-${num2}`
+
+        function swap (){
+            [num1,num2] = [num2,num1]
+
+            // var temp = num1
+            // num1 = num2
+            // num2 = temp
+
+        console.log(`After Swap - num1-${num1} num2-${num2}`);
+        document.getElementById("after").innerHTML = `After Swap - num1-${num1} num2-${num2}`
+        }
+    </script>
+</body>
+</html>

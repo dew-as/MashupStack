@@ -17,9 +17,8 @@
         Click Here...
     </button>
     <button onclick="location.reload()" class="btn btn-primary">Clear</button>
-    <ul id="lists" style="font-weight: bold;list-style: none;margin-top: 20px;">
-
-    </ul>
+    <!-- <ul id="lists" style="font-weight: bold;list-style: none;margin-top: 20px;">
+    </ul> -->
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -47,10 +46,10 @@
 
         const takeRandom = () => lotteryTickets[Math.floor(Math.random() * length)]
 
-        lotteryTickets.map((ticket,index)=>{
-            document.getElementById("lists").innerHTML += `<li style="margin-top:10px">${index+1 +". "+ticket}</li>`
-            console.log(ticket);
-        })
+        // lotteryTickets.map((ticket,index)=>{
+        //     document.getElementById("lists").innerHTML += `<li style="margin-top:10px">${index+1 +". "+ticket}</li>`
+        //     console.log(ticket);
+        // })
 
         const findTheWinner = () => {
             const winner = takeRandom()

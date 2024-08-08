@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="result"></h1>
+    <script>
+        let neededFibbo = Number(prompt("How many fibonacci you want"))
+        let series = []
+        let a = 0
+        let b = 1
+        let next
+
+        fibboCreate = (n) => {
+            if(n == 0){
+                return n
+            }else {
+                let value = series.push(a)
+                next = a + b
+                a = b
+                b = next
+                return  value + fibboCreate(n - 1) 
+            }
+        }
+
+        fibboCreate(neededFibbo)
+
+        console.log(series);
+        document.getElementById("result").innerHTML = series.join(" ")
+    </script>
+</body>
+</html>

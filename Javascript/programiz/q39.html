@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="result"></h1>
+    <script>
+        let userString = prompt("enter a string")
+        userString[0] = userString[0].toUpperCase()
+        let newString = userString[0].toUpperCase() + userString.slice(1)
+
+        document.getElementById("result").innerHTML = newString
+    </script>
+</body>
+</html>

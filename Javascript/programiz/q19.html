@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2 id="result"></h2>
+    <script>
+        let from = prompt("from")
+        let to = prompt("to")
+        let sum,a,j,i
+        let amstrngs = []
+
+        for(i=Number(from);i<=Number(to);i++){
+            let a = i.toString()
+            sum = 0
+            // console.log(i);
+            for(j=0;j<a.length;j++){
+                // console.log(j+"="+a[j]);
+                sum += Math.pow(a[j],3)
+                // console.log(sum);
+            }
+            if(sum == a){
+                amstrngs.push(sum)
+            }
+        }
+        console.log(amstrngs);
+        document.getElementById("result").innerHTML = `from ${from} to ${to} armstrong numbers are ${amstrngs.join(" ")}`
+    </script>
+</body>
+</html>

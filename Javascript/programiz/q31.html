@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="result"></h1>
+    <script>
+        let reverseBinary = []
+        let quotient = Number(prompt("Enter a number"))
+        let reminder
+
+        while(true){
+            reminder = quotient % 2
+            reverseBinary.push(reminder)
+            quotient = Math.floor((quotient) / 2)
+            if (quotient == 0) {
+                break
+            }
+        }
+
+        console.log(quotient)
+
+        document.getElementById("result").innerHTML = reverseBinary.reverse().join('')
+
+        // document.getElementById("result").innerHTML = quotient.toString(2)
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="result"></h1>
+    <script>
+        let number = Number(prompt("Enter natural number limit"))
+
+        function findSumRecursion (n){
+            if (n==1) {
+                return n
+            }else {
+                return n + findSumRecursion(n-1)
+            }
+        }
+
+        let sum = findSumRecursion(number)
+
+        console.log(sum);
+        document.getElementById("result").innerHTML = sum
+    </script>
+</body>
+</html>

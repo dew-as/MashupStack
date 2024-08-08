@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="result"></h1>
+    <script>
+        let number = prompt("Enter")
+        let sum = 0
+        let splitted = number.split("")
+        // if(number === Math.pow(1,3)+Math.pow(5,3)+Math.pow(3,3)){
+        //     console.log("Amstrong");
+        // }
+        for(i=0;i<splitted.length;i++){
+            sum += Math.pow(Number(splitted[i]),3)
+        }
+        if (sum == number) {
+            console.log(true);
+            document.getElementById("result").innerHTML = `${number} is Armstrong`
+        }else{
+            console.log(false);
+            document.getElementById("result").innerHTML = `${number} is not an Armstrong`
+        }
+    </script>
+</body>
+</html>

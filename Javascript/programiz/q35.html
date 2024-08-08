@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="hello">Hello</h1>
+    <input type="text" id="replace" placeholder="which character you want to replace"><br>
+    <input type="text" id="to" placeholder="replace with which character">
+    <button onclick="change()">Change</button>
+    <script>
+        function change(){
+            let string = document.getElementById("hello").innerText
+            let replace = document.getElementById("replace").value
+            let to = document.getElementById("to").value
+            let replaced = string.replace(new RegExp(replace, 'gi'),to)
+            document.getElementById("hello").innerHTML =  replaced
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+------------exam result--------------
+
+1.db.employee.find({$and:[{department:"sales"},{leave:{$gt:5}}]})
+
+2.db.employee.countDocuments({department:"operations"})
+
+3.db.employee.aggregate([{$group:{_id:"$department",employees:{$count:{}}}}])
+
+4.db.employee.aggregate([{$group:{_id:"$department",totalLeaves:{$sum:"$leave"}}},{$match:{totalLeaves:{$gt:10}}}])
+
+5.db.exam.aggregate([{$match:{"exam_status":"pass"}},{$lookup:{from:"employee",localField:"employee_id",foreignField:"id",as:"result"}},{$project:{_id:0,name:"$result.name"}}])
+
+6.db.employee.aggregate([{$lookup:{from:"exam",localField:"id",foreignField:"employee_id",as:"exam_result"}},{$match:{"exam_result":{$size:0}}},{$project:{_id:0,name:"$name"}}])

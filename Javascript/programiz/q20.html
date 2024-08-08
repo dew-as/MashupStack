@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+                div {
+            width: 20%;
+            margin: auto;
+            padding: 20px;
+        }
+        input {
+            width: 75%;
+            margin: auto;
+            border-radius: 10px;
+            margin-top: 10px;
+            padding: 10px ;
+            border:1px solid dodgerblue;
+        }
+        select {
+            width: 50%;
+            border-radius: 10px;
+            margin-top: 10px;
+            padding: 10px 20px;
+            border:1px solid dodgerblue;
+        }
+        button {
+            margin-top: 10px;
+            width: 25%;
+            background-color: dodgerblue;
+            border: none;
+            border-radius: 10px;
+            padding: 5px 10px;
+            font-size: 20px;
+            color: white;
+        }
+        span {
+            display: flex;
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input id="num1" type="text" placeholder="Number 1">
+        <input id="num2" type="text" placeholder="Number 1">
+        <span>
+            <select id="operator">
+                <option>--Select--</option>
+                <option>+</option>
+                <option>-</option>
+                <option>x</option>
+                <option>/</option>
+            </select>
+            <button id="submit">=</button>
+        </span>
+        <input id="result">
+        <button onclick="location.reload()">Clear</button>
+    </div>
+    <script>
+        var submission = document.getElementById("submit")
+
+        submission.addEventListener("click",() => {
+            var num1 = parseInt(document.getElementById("num1").value)
+            var num2 = parseInt(document.getElementById("num2").value)
+            var operator = document.getElementById("operator").value
+
+            const add = () => num1 + num2
+            const sub = () => num1 - num2
+            const multiply = () => num1 * num2
+            const div = () => num2=="0" ? "Can't Devided By Zero" : num1 / num2
+
+            if (isNaN(num1) || isNaN(num2)) {
+                console.log("Invalid Numbers !");
+                document.getElementById("result").value = "Invalid Numbers !"
+            }else {
+                var result = operator == "+" ? add() : operator == "-" ? sub() :operator== "x" ? multiply() : operator == "/" ? div() : console.log("invalid");
+                console.log(result);
+                document.getElementById("result").value = result
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="result"></h1>
+
+    <script>
+        let number1 = Number(prompt("Enter first number for LCM"))
+        let number2 = Number(prompt("Enter second number for LCM"))
+        let result = 0
+        let LCM = 0
+
+        if (number1 < number2) {
+            for(i=number1;i>=1;i--) {
+                if (number1 % i == 0 && number2 % i == 0) {
+                    result = i
+                    break
+                }
+            }
+        } else {
+            for(i=number2;i>=1;i--){
+                if (number1 % i == 0 && number2 % i == 0) {
+                    result = i
+                    break
+                }
+            }
+        }
+
+        LCM = (number1 * number2) / result
+
+        // LCM(a, b) = (a × b) / gcd(a, b)
+
+        document.getElementById("result").innerHTML = LCM
+    </script>
+</body>
+</html>
