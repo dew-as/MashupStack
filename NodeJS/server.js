@@ -52,16 +52,38 @@
 
 // ------------------------
 
-// ------------Day-4----------
+// ---------Day-4----------
 
-var operations = require("./operationModule.js")
+// var operations = require("./operationModule.js")
 
-var num1 = 10
-var num2 = 20
-var operationsAre = ['addition','substraction','division','multiply']
+// var num1 = 10
+// var num2 = 20
+// var operationsAre = ['addition','substraction','division','multiply']
 
-operationsAre.map((operand)=>{
-  console.log(operations[operand](num1,num2));
-})
+// operationsAre.map((operand)=>{
+//   console.log(operations[operand](num1,num2));
+// })
 
-// ---------------------------
+// ------------------------
+
+//--------Day-5------------
+
+// var http = require('http')
+
+// var server = http.createServer((req,res) => {
+//   console.log(req.url)
+//   console.log(req.method) 
+//   if(req.method == "GET"){
+//     res.statusCode = 200
+//     res.write("<h1>Hello World</h1>")
+//     res.end()
+//   }else {
+//     res.statusCode = 404
+//     res.statusMessage = "Not found"
+//     res.end()
+//   }
+// })
+
+// server.listen(8080)
+
+// ------------------------
