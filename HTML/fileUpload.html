@@ -8,20 +8,16 @@
 </head>
 <body>
  <div class="outer">
-	<div class="left"></div>
 	  <div class="main">
-		<div class="right">
-		    <h1>Login Form</h1>
-		<form>
+		    <h1>File Upload</h1>
+		<form action="http://localhost:3000/fileUpload" method="post" enctype="multipart/form-data">
 		    <label for="email">Email :</label>
 		    <input type="email" name="email" id="email">
-		    <label for="password">Password :</label>
-		    <input type="password" name="password" id="password">
-		    <input type="checkbox" name="checkbox" id="checkbox">
-		    <label for="remember">Remember Me</label>
-		    <button>Login</button>
+            <label for="name">Name :</label>
+		    <input type="text" name="name" id="name">
+            <input type="file" name="fileToUpload">
+		    <input type="submit">Upload</input>
 		</form>
-	    </div>
 	  </div>
  </div>
 </body>

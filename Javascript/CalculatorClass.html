@@ -6,8 +6,9 @@
     <title>Document</title>
 </head>
 <body>
-    <input type="text" id="fnum" placeholder="first number">
-    <select id="operator">
+    <form action="/calculate" method="get">
+    <input name="fnum" type="text" id="fnum" placeholder="first number">
+    <select name="operator" id="operator">
         <option>--select-operator--</option>
         <option>+</option>
         <option>-</option>
@@ -15,8 +16,9 @@
         <option>/</option>
         <option>%</option>
     </select>
-    <input type="text" id="snum" placeholder="second number">
-    <button id="btn" onclick="resultMaker()">Calculate</button>
+    <input name="snum" type="text" id="snum" placeholder="second number">
+    <button id="btn" type="submit" onclick="resultMaker()">Calculate</button>
+</form>
     <p id="result"></p>
 
     <script>

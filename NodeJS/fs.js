@@ -1,5 +1,5 @@
-var http = require("http")
-var fs = require('fs')
+// var http = require("http")
+// var fs = require('fs')
 
 // http.createServer((req,res)=>{
 //     fs.readFile("readFile.html",(err,data)=>{
