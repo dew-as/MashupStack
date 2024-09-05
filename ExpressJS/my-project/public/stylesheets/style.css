@@ -1,0 +1,36 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.highlight {
+  color: white;
+}
+
+.lorem {
+  width: 350px;
+  height: 200px;
+  border-radius: 10px;
+}
+
+h1 {
+  color: skyblue;
+}
+
+p {
+  background-color: skyblue;
+  padding: 20px;
+  border-radius: 10px;
+  word-spacing: 2px;
+  letter-spacing: 1px;
+  text-align: justify;
+}
+
+.main {
+  width: 350px;
+  margin: auto;
+}

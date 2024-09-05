@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title><%= title %></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <h2 class="text-secondary text-center"><%= title %></h2>
+	<div class="mx-auto" style="width: 700px;height: 300px;">
+		<div id="demo1" class="carousel slide mt-3" data-ride="carousel">
+  <ul class="carousel-indicators">
+    <li data-target="#demo1" data-slide-to="0" class="active"></li>
+    <li data-target="#demo1" data-slide-to="1"></li>
+    <li data-target="#demo1" data-slide-to="2"></li>
+    <li data-target="#demo1" data-slide-to="3"></li>
+    <li data-target="#demo1" data-slide-to="4"></li>
+    <li data-target="#demo1" data-slide-to="5"></li>
+  </ul>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="https://cdn.mos.cms.futurecdn.net/PZtqJj8yTeTYnw3WMjdomF.jpg" alt="yellow" width="700" height="300">
+      <div class="carousel-caption">
+        <h1 class="text-white">Dell XPS 13</h1>
+      </div>   
+    </div>
+    <div class="carousel-item">
+      <img src="https://media.wired.com/photos/65ea34d70264b0ad869cbc18/master/w_2560%2Cc_limit/MacBook-Air-M3-Review-Featured-Gear.jpg" alt="chappal" width="700" height="300">
+      <div class="carousel-caption">
+        <h1 class="text-white">MacBook Air</h1>
+      </div>   
+    </div>
+ <div class="carousel-item">
+      <img src="https://static1.xdaimages.com/wordpress/wp-content/uploads/2022/11/HP-Envy-x360-13-10-16.jpg" alt="Fortuner" width="700" height="300">
+      <div class="carousel-caption">
+        <h1 class="text-white">HP Envy x360</h1>
+      </div>
+  </div>
+  <div class="carousel-item">
+    <img src="https://cdn.arstechnica.net/wp-content/uploads/2023/06/IMG_1204.jpeg" alt="Fortuner" width="700" height="300">
+    <div class="carousel-caption">
+      <h1 class="text-white">Lenovo ThinkPad X1 Carbon</h1>
+    </div>
+</div>
+<div class="carousel-item">
+    <img src="https://i.pcmag.com/imagery/reviews/075bmVhnXs6BUHpdXkVt9xo-1.fit_lim.size_1050x591.v1708616444.jpg" alt="Fortuner" width="700" height="300">
+    <div class="carousel-caption">
+      <h1 class="text-white">Asus ZenBook 14</h1>
+    </div>
+</div>
+<div class="carousel-item">
+    <img src="https://cdn.mos.cms.futurecdn.net/sLjPJgQiYLxmJuLfUwrEed-1200-80.jpg" alt="Fortuner" width="700" height="300">
+    <div class="carousel-caption">
+      <h1 class="text-white">Microsoft Surface Laptop 3</h1>
+    </div>
+</div>
+  </div>
+  <a class="carousel-control-prev" href="#demo1" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo1" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+</div>
+	</div>
+    <div class="container">
+        <table class="table mt-3 text-secondary">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% for(object of objects){ %>
+                <tr>
+                    <%for (key in object) { %>
+                      <th><%= key === 'price' ? object[key] + '₹' : object[key] %></th>
+                    <% } %>
+                </tr>
+                <%} %>
+            </tbody>
+          </table>
+    </div> 
+</body>
+</html>

@@ -1,6 +1,6 @@
 var http = require('http')
 var url = require('url')
-var qdata,fnum,snum,operator,result,answer
+var qdata,fnum,snum,operator,answer
 
 class Calculate {
     constructor(fnum,operator,snum){
@@ -51,7 +51,7 @@ http.createServer((req,res) => {
         <option>%</option>
     </select>
     <input name="snum" type="text" id="snum" placeholder="second number">
-    <button id="btn" type="submit" onclick="resultMaker()">Calculate</button>
+    <button id="btn" type="submit">Calculate</button>
 </form>
     <p id="result"></p>
     </body>
@@ -59,13 +59,13 @@ http.createServer((req,res) => {
 
 var urlString = url.parse(req.url,true)
     if (urlString.pathname == '/calculate') {
-        res.write('calculating...')
         qdata = urlString.query
         fnum = qdata.fnum
         snum = qdata.snum
         operator = qdata.operator
-        result = new Calculate(Number(fnum),operator,Number(snum));
-        console.log(answer);
+        new Calculate(Number(fnum),operator,Number(snum));
+        console.log(answer)
+        res.write(`<h1>${fnum} ${operator} ${snum} = ${answer.toString()}</h1>`)
         res.end()
     }else {
         res.write(html)

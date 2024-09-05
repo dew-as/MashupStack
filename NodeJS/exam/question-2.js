@@ -1,7 +1,7 @@
 var http = require('http')
 
 http.createServer((req,res) => {
-    if (req.url != '/favicon.ico') {
+    if (req.url != '/favicon.ico' && req.url.split('/')[1] >=1 ) {
         var n = req.url
         console.log(n)
         console.log(n.split('/'))

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= number %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <div class="main">
+    <h1 id="head">What is Lorem Ipsum?</h1>
+    <img class="lorem" src="\images\cicero_gradient.webp" alt="lorem-ipsum">
+    <p class="highlight"><b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+      has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+      and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+      electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+      Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+      PageMaker including versions of Lorem Ipsum.</p>
+  </div>
+  <%- html %>
+  <div style="border: 1px solid gray;margin-top: 5px;">
+    <% if (number> 0) { %>
+      <p>
+        <%= number %> is positive
+      </p>
+      <%}else if (number==0) { %>
+        <p>
+          <%= number %> is zero
+        </p>
+        <%}else {%>
+          <p>
+            <%= number %> is negative
+          </p>
+          <%}%>
+        </div>
+        <div style="border: 1px solid gray;margin-top: 5px;"></div>
+          <% for(name of names){ %>
+            <p><%= name %></p>
+          <%}%>
+        </div>
+          <div style="border: 1px solid gray;margin-top: 5px;">
+          <p><%= obj.name %></p>
+          <p><%= obj.age %></p>
+          <p><%= obj.place %></p>
+          </div>
+          <div style="border: 1px solid gray;margin-top: 5px;"></div>
+          <% for(object of objects){ %>
+            <p><%= object.name %></p>
+          <p><%= object.age %></p>
+          <p><%= object.place %></p>
+          <%}%>
+        </div>
+            <script src="/javascripts/index.js"></script>
+</body>
+</html>
