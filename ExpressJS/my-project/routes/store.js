@@ -11,7 +11,6 @@ router.get('/',(req,res) => {
 
 router.post('/',(req,res) => {
   console.log(req.body)
-  objects.push(req.body)
 
   const { id,name,description,price } = req.body
 
@@ -23,7 +22,9 @@ router.post('/',(req,res) => {
     })
 
     newProduct.save()
-    .then(()=>  res.render('ecommerce',{objects : objects,title:'Ecommerce'}))
+    .then(() => {
+      res.redirect('/store')
+    })
     .catch((error) => console.log(error))
 
 })
