@@ -7,17 +7,7 @@ const db = require('./database/db')
 var apiRouter = require('./routes/api');
 const session = require('express-session');
 
-const expressLayouts = require('express-ejs-layouts');
-
 var app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-//layout setup
-app.use(expressLayouts);
-app.set('layout', 'layouts/main-layout');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -46,7 +36,6 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
 });
 
 module.exports = app;

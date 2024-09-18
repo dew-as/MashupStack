@@ -1,0 +1,36 @@
+<% title = 'SingleProduct' %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+      <div class="card border-0 shadow">
+        <div class="card-body">
+          <h1 class="text-center mb-4">Name : <%= item.name %></h1>
+          <p class="font-weight-bold">ID: <%= item.id %></p>
+          <p class="font-weight-bold">Description: <%= item.description %></p>
+          <p class="font-weight-bold">Price: $<%= item.price %></p>
+          <p class="font-weight-bold">ID (MongoDB): <%= item._id %></p>
+        </div>
+        <div class="card-footer d-flex justify-content-around">
+            <button class="btn btn-success"><a class="text-white" href="/api/store/updateProduct/<%=item._id%>">Edit</a></button>
+            <button class="btn btn-danger"><a class="text-white" href="/api/store/deleteProduct/<%=item._id%>">Delete</a></button>
+        </div>
+        <% For == 'delete' ? visible = 'd-block' : visible = 'd-none' %>
+        <div class= <%= visible %> >
+          <div class="alert alert-warning alert-dismissible fade show mt-1" role="alert">
+            Are you sure you want to delete <%= item.name %> item?
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+             <a class="text-white" href="/api/store/confirmDelete/<%=item._id%>">Delete</a>
+            </button>
+            <button type="button" class="btn btn-secondary" data-dismiss="alert">
+              Cancel
+            </button>
+          </div>
+        </div>
+        </div>
+        </div>
+      </div>
+    </div>

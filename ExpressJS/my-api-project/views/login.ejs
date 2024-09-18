@@ -1,0 +1,31 @@
+<% title = 'Login' %>
+
+<div class="container">
+<h1 class="text-center mb-4">Login</h1>
+<form action="/api/login" method="post">
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="text" name="email" class="form-control" id="email" placeholder="Enter email">
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" name="password" class="form-control" id="password" placeholder="Enter password">
+  </div>
+  <button type="submit" class="btn btn-primary btn-block">Submit</button>
+  <p class="text-center">Don't have an account ? <a href="/api/signup">Signup</a></p>
+</form>
+
+<% if (message) { %>
+  <div class="alert alert-danger" role="alert">
+    <%= message %>
+  </div>
+<% } %>
+<% if (errors && errors.length > 0) { %>
+  <div style="color: red;">
+   <ul>
+       <% errors.forEach(function(error) { %>
+           <li><%= error.msg %></li>
+       <% }); %>
+   </ul>
+   </div>
+  <% } %>
