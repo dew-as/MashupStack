@@ -54,7 +54,7 @@ const createProduct = () => {
             const productList = document.getElementById('product-table');
             productList.innerHTML = '<tr><th>Name</th><th>Price</th><th>Description</th><th colspan="2" style="text-align:center;">Actions</th></tr>';
             response.data.forEach(product => {
-                const row = `<tr><td>${product.name}</td><td>${product.price}</td><td>${product.description}</td><td><button onclick="showUpdateForm('${product._id}', '${product.name}', '${product.description}', ${product.price})">Update</button></td><td><button onclick="showDeleteConfirmation('${product._id}', '${product.name}')">Delete</button></td></tr>`;
+                const row = `<tr><td>${product.name}</td><td>${product.price}</td><td>${product.description}</td><td><button onclick="showUpdateForm('${product._id}', '${product.name}', '${product.description}', ${product.price})">Update</button></td><td><button onclick="showDeleteConfirmation('${product._id}', '${product.name}')">Delete</button></td><td><a href="/productAjax/generate-pdf/${product._id}">PDF</a></td><td><a href="/productAjax/send_product_email/${product._id}">Send Email</a></td></tr>`;
                 productList.innerHTML += row;
             });
             // Show the product list

@@ -1,0 +1,7 @@
+<% title='All Users' %> 
+<h1>Users List</h1> 
+<ul> 
+  <% for(user of users){ %> 
+    <li><a href='/users/view_profile/<%= user._id %>'><%= user.fname+' '+user.lname%></a></li> 
+  <% } %> 
+</ul>

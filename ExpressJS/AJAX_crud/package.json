@@ -18,6 +18,11 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.6.1",
     "mongoose-paginate-v2": "^1.8.3",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.15",
+    "pdf-generator": "^1.0.4",
+    "pdfmake": "^0.2.12",
+    "puppeteer": "^23.4.0"
   }
 }

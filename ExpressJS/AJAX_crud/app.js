@@ -5,6 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const db = require('./database/db')
 var productAjaxRoute = require('./routes/productAjax');
+var userRoute = require('./routes/users');
+var indexRouter = require('./routes/index')
 const session = require('express-session');
 
 const expressLayouts = require('express-ejs-layouts');
@@ -31,7 +33,9 @@ app.use(session({
   saveUninitialized: true,
 }));
 
+app.use('/',indexRouter)
 app.use('/productAjax', productAjaxRoute);// set up for api route
+app.use('/users', userRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

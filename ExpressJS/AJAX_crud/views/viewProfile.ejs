@@ -1,0 +1,9 @@
+<% title='Create User Profile' %>
+
+  <h1>User Profile</h1>
+  <img src="<%= `data:image/jpeg;base64,${userProfile.display_picture}` %>" width="20%" height="20%">
+  <!-- <img src="data:image/jpeg;base64,<%= // displayPictureBuffer.toString('base64') %>" /> -->
+  <p>First Name: <%= userProfile.fname %></p>
+  <p>Last Name: <%= userProfile.lname %></p>
+  <p>Technologies: <%= userProfile.technologies %></p>
+  <p>Email: <%= userProfile.email %></p>
