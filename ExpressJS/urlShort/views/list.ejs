@@ -1,36 +1,34 @@
 <% title='List Page' %>
 
   <div class="container-fluid p-5">
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mw-100">
+        <!-- Left: Site Name -->
+        <input type="search" class="form-control form-control-sm w-25" placeholder="Search" aria-label="Search"
+          oninput="searchInput(this.value)" />
+        <!-- Right: Logout Button -->
+        <div class="d-flex align-items-center ms-auto">
+          <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link" href="/api/urlAdd">Add Product</a>
             </li>
-            <li class="nav-item mx-auto">
-              <form class="d-flex justify-content-center">
-                <input oninput="searchInput(this.value)" class="form-control me-2"
-                  type="search" placeholder="Search" aria-label="Search">
-              </form>
-            </li>
-            <li class="nav-item ms-auto">
-              <a class="nav-link" href="/api/logout">Logout</a>
-            </li>
-            <li class="nav-item ms-auto"></li>
-              <a class="nav-link" href="#"><%= message.user %></a>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <%= message.user %>
+              </a>
             </li>
           </ul>
+          <button class="btn btn-dark btn-md ml-2">
+            <a class="text-decoration-none text-white" href="/api/logout">Logout</a>
+            <i class="fas fa-sign-out-alt"></i>
+          </button>
         </div>
       </div>
     </nav>
 
-     <!-- Search Results -->
-     <div id="search-results" class="mt-4 position-absolute" style="z-index: 1;">
+    <!-- Search Results -->
+    <div id="search-results" class="mt-4 position-absolute" style="z-index: 1;">
       <div id="list-group" class="bg-secondary rounded rounded-2">
       </div>
     </div>
@@ -54,7 +52,9 @@
                 <p class="card-text">
                   <%= object.description %>
                 </p>
-                <a href="/api/shortUrl/<%= object.shortUrl %>" class="btn btn-sm btn-info"><%= object.shortUrl %></a>
+                <a href="/api/shortUrl/<%= object.shortUrl %>" class="btn btn-sm btn-info">
+                  <%= object.shortUrl %>
+                </a>
                 <div class="d-flex justify-content-end mt-4">
                   <a href="/api/urlUpdate/<%= object._id %>" class="btn btn-sm btn-warning mr-2">Edit</a>
                   <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
@@ -126,7 +126,7 @@
                   <% } else { %>
                     <p class="text-center">No URLs found.</p>
                     <% } %>
-                      <% if (typeof message === 'string' && message.length > 0) { %>
+                      <% if (typeof message==='string' && message.length> 0) { %>
                         <div class="alert alert-danger alert-dismissible fade show mt-4" role="alert">
                           <%= message %>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">

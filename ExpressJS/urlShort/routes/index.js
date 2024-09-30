@@ -2,14 +2,10 @@ var express = require('express');
 var router = express.Router();
 const User = require('../models/userModel')
 const Url = require('../models/urlModel')
-const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
-const { message } = require('prompt')
-const axios = require('axios');
 const shortid = require('shortid')
-const session = require('express-session');
 
 
 router.get('/signup', async (req, res) => {
@@ -37,7 +33,7 @@ router.get('/login', async (req, res) => {
     const message = req.query.message || '';
     res.render('login', { message });
   } catch (error) {
-    
+    console.log(error);
   }
   
 });
@@ -158,10 +154,12 @@ router.get('/urlDelete/:id', verifyToken, async (req, res) => {
 router.get('/search', verifyToken, async (req, res) => {
   try {
     const query = req.query.query;
+    const email = req.session.user_email
     if (!query) {
       res.status(400).json({ error: 'Query parameter is required' });
     }
     const results = await Url.find({
+      email:email,
       $or: [
         { title: { $regex: query, $options: 'i' } },
         { url: { $regex: query, $options: 'i' } }

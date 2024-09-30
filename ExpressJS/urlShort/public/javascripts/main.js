@@ -15,7 +15,7 @@ const searchInput = (value) => {
                 searchResults.forEach(result => {
                     const resultHTML = `
                         <div class="list-group-item bg-light">
-                            <h5>${result.title}</h5>
+                            <h5><a href=${result.url}>${result.title}</a></h5>
                             <p>${result.url}</p>
                         </div>
                     `;
