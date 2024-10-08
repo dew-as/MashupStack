@@ -101,149 +101,171 @@ router.post('/login', [
         if (!isPasswordValid) {
           res.status(422).json({ message: 'Incorrect password.' });
         } else {
-                // Set user's ID and email in the session
-                const token = jwt.sign({ userId: foundUser._id, userRole: foundUser.role }, process.env.JWT_SECRET = generateSecretKey(), { expiresIn: '1h' });
-                res.status(200).json({ token, email: foundUser.email, role: foundUser.role,userId:foundUser._id });
-              }
-            })
-            .catch(error => {
-              console.error(error);
-              res.status(500).json({ message: 'Internal Server Error' });
-            });
+          // Set user's ID and email in the session
+          const token = jwt.sign({ userId: foundUser._id, userRole: foundUser.role }, process.env.JWT_SECRET = generateSecretKey(), { expiresIn: '1h' });
+          res.status(200).json({ token, email: foundUser.email, role: foundUser.role, userId: foundUser._id });
         }
-      });
-  
-  //route for logout
-  router.get('/logout', (req, res) => {
-    req.session.destroy((err) => {
-      if (err) {
-        console.log(err);
-        res.status(500).json({ message: 'Error' });
-      } else {
-        res.clearCookie('session');
-        res.status(200).json({ message: 'Logged out successfully' });
-      }
-    });
-  });
-  
-  router.get('/home', varifyToken, function (req, res, next) {
-    res.status(200).json({ message: 'Home page' });
-  });
-  
-  router.get('/store', varifyToken, function (req, res, next) {
-    const { page = 1, limit = 5 } = req.query;
-    const options = {
-      page: parseInt(page, 10),
-      limit: parseInt(limit, 10),
-      sort: { id: 1 },
-      projection: { __v: 0 }
-    };
-    Product.paginate({}, options)
-      .then(result => {
-        res.status(200).json({ objects: result.docs, pagination: result });
       })
       .catch(error => {
         console.error(error);
         res.status(500).json({ message: 'Internal Server Error' });
       });
-  });
-  
-  router.post('/store', varifyToken, (req, res) => {
-    const { id, name, description, price } = req.body;
-    const newProduct = new Product({ id, name, description, price });
-    const validationError = newProduct.validateSync();
-    if (validationError) {
-      res.status(400).json({ errors: validationError.errors });
-    } else {
-      newProduct.save()
-        .then(() => {
-          res.status(201).json({ message: 'Product created successfully' });
-        })
-        .catch((error) => {
-          console.log(error);
-          res.status(500).json({ message: 'Internal Server Error' });
-        });
-    }
-  });
-  
-  router.get('/store/productId/:id', varifyToken, (req, res) => {
-    const Reqid = req.params.id;
-    Product.findById(Reqid)
-      .then(product => {
-        res.status(200).json({ item: product });
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json({ message: 'Internal Server Error' });
-      });
-  });
-  
-  router.get('/store/updateProduct/:id', varifyToken, (req, res) => {
-    const Reqid = req.params.id;
-    Product.findById(Reqid)
-      .then(product => {
-        res.status(200).json({ item: product, errors: [] });
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json({ message: 'Internal Server Error' });
-      });
-  });
-  
-  router.post('/store/updateProduct/:id', varifyToken, (req, res) => {
-    const Reqid = req.params.id;
-    const { id, name, description, price } = req.body;
-    const product = new Product({ id, name, description, price });
-    const validationError = product.validateSync();
-    if (validationError) {
-      res.status(400).json({ errors: validationError.errors });
-    } else {
-      Product.findByIdAndUpdate(Reqid, { id, name, description, price })
-        .then(() => {
-          res.status(200).json({ message: 'Product updated successfully' });
-        })
-        .catch((err) => {
-          console.log(err);
-          res.status(500).json({ message: 'Internal Server Error' });
-        });
-    }
-  });
-  
-  router.get('/store/deleteProduct/:id', varifyToken, (req, res) => {
-    const Reqid = req.params.id;
-    Product.findById(Reqid)
-      .then(product => {
-        res.status(200).json({ item: product });
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json({ message: 'Internal Server Error' });
-      });
-  });
+  }
+});
 
-    router.get('/store/confirmDelete/:id', varifyToken, (req, res) => {
-      const Reqid = req.params.id;
-      Product.findByIdAndDelete(Reqid)
-        .then(() => {
-          res.status(200).json({ message: 'Product deleted successfully' });
-        })
-        .catch((err) => {
-          console.log(err);
-          res.status(500).json({ message: 'Internal Server Error' });
-        });
+//route for logout
+router.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.log(err);
+      res.status(500).json({ message: 'Error' });
+    } else {
+      res.clearCookie('session');
+      res.status(200).json({ message: 'Logged out successfully' });
+    }
+  });
+});
+
+router.get('/home', varifyToken, function (req, res, next) {
+  res.status(200).json({ message: 'Home page' });
+});
+
+// router.get('/store', varifyToken, function (req, res, next) {
+//   const { page = 1, limit = 5 } = req.query;
+//   const options = {
+//     page: parseInt(page, 10),
+//     limit: parseInt(limit, 10),
+//     sort: { id: 1 },
+//     projection: { __v: 0 }
+//   };
+//   Product.paginate({}, options)
+//     .then(result => {
+//       res.status(200).json({ objects: result.docs, pagination: result });
+//     })
+//     .catch(error => {
+//       console.error(error);
+//       res.status(500).json({ message: 'Internal Server Error' });
+//     });
+// });
+
+router.get('/store', varifyToken, (req, res, next) => {
+  Product.find({}).then(data => {
+    res.status(200).json(data)
+  }).catch(error => {
+    res.status(500).json({ message: 'Internal Server Error' });
+  })
+})
+
+router.post('/store', varifyToken, (req, res) => {
+  const { id, name, description, price } = req.body;
+  const newProduct = new Product({ id, name, description, price });
+  const validationError = newProduct.validateSync();
+  if (validationError) {
+    res.status(400).json({ errors: validationError.errors });
+  } else {
+    newProduct.save()
+      .then(() => {
+        res.status(201).json({ message: 'Product created successfully' });
+      })
+      .catch((error) => {
+        console.log(error);
+        res.status(500).json({ message: 'Internal Server Error' });
+      });
+  }
+});
+
+router.get('/store/productId/:id', varifyToken, (req, res) => {
+  const Reqid = req.params.id;
+  Product.findById(Reqid)
+    .then(product => {
+      res.status(200).json({ item: product });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ message: 'Internal Server Error' });
     });
-    
-    // Route to handle page visit
-    router.get('/adminPanel', varifyTokenAdmin, (req, res) => {
-      res.status(200).json({ message: 'Admin panel' });
+});
+
+router.get('/store/updateProduct/:id', varifyToken, (req, res) => {
+  const Reqid = req.params.id;
+  Product.findById(Reqid)
+    .then(product => {
+      res.status(200).json({ item: product, errors: [] });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ message: 'Internal Server Error' });
     });
-    
-    router.get('/about', varifyToken, (req, res) => {
-      res.status(200).json({ message: 'About us' });
+});
+
+router.put('/store/updateProduct/:id', varifyToken, (req, res) => {
+  const Reqid = req.params.id;
+  const { id, name, description, price } = req.body;
+  const product = new Product({ id, name, description, price });
+  const validationError = product.validateSync();
+  if (validationError) {
+    res.status(400).json({ errors: validationError.errors });
+  } else {
+    Product.findByIdAndUpdate(Reqid, { id, name, description, price })
+      .then(() => {
+        res.status(200).json({ message: 'Product updated successfully' });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json({ message: 'Internal Server Error' });
+      });
+  }
+});
+
+router.get('/store/deleteProduct/:id', varifyToken, (req, res) => {
+  const Reqid = req.params.id;
+  Product.findById(Reqid)
+    .then(product => {
+      res.status(200).json({ item: product });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ message: 'Internal Server Error' });
     });
-    
-    router.get('/ecomForm', varifyToken, (req, res) => {
-      res.status(200).json({ message: 'Ecommerce form' });
+});
+
+router.delete('/store/confirmDelete/:id', varifyToken, (req, res) => {
+  const Reqid = req.params.id;
+  Product.findByIdAndDelete(Reqid)
+    .then(() => {
+      res.status(200).json({ message: 'Product deleted successfully' });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ message: 'Internal Server Error' });
     });
-    
-    module.exports = router; 
+});
+
+router.post('/searchProduct', varifyToken, (req, res) => {
+  const { searchInput } = req.body;
+  console.log(searchInput);
+  Product.find({ name: { $regex: searchInput, $options: 'i' } })
+    .then((products) => {
+      res.status(200).json({ products, message: 'Products found successfully' });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ message: 'Internal Server Error' });
+    });
+});
+
+
+// Route to handle page visit
+router.get('/adminPanel', varifyTokenAdmin, (req, res) => {
+  res.status(200).json({ message: 'Admin panel' });
+});
+
+router.get('/about', varifyToken, (req, res) => {
+  res.status(200).json({ message: 'About us' });
+});
+
+router.get('/ecomForm', varifyToken, (req, res) => {
+  res.status(200).json({ message: 'Ecommerce form' });
+});
+
+module.exports = router; 
