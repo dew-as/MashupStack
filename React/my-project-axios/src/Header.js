@@ -1,12 +1,17 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
+import OutsideClickHandler from 'react-outside-click-handler';
 
 const Header = () => {
     const [searchInput, setSearchInput] = useState('')
     const navigate = useNavigate()
     const [search, setSearch] = useState(false)
     const [searchResult, setSearchResult] = useState([])
+    const [cart, setCart] = useState(false)
+    const [cartItems, setCartItems] = useState([])
+    const [totalPrice, setTotalPrice] = useState(0)
+    const [user, setUser] = useState(localStorage.getItem('email') || '')
 
     useEffect(() => {
         (async (e) => {
@@ -26,6 +31,20 @@ const Header = () => {
             }
         })()
     }, [searchInput])
+
+    const handleLogout = async () => {
+        try {
+            const result = await axios.get('http://localhost:5000/api/logout')
+            console.log(result);
+            // Remove auth token from LocalStorage
+            localStorage.clear()
+            // Update Auth Header
+            axios.defaults.headers.common['Authorization'] = '';
+            navigate('/login/Logout Succesfully')
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <div>
@@ -56,21 +75,30 @@ const Header = () => {
                                 Products
                             </NavLink>
                         </li>
+                        <form className='form-inline my-2 my-lg-0' onSubmit={(e) => e.preventDefault()}>
+                            <input className="form-control mr-sm-2" type="search" placeholder="Search" value={searchInput} onChange={(e) => setSearchInput(e.target.value)} aria-label="Search" />
+                        </form>
+                        <div className='d-flex justify-content-center align-items-center mr-3' onClick={() => setCart(true)}>
+                            <li className="nav-item mr-2 position-relative list-unstyled  text-primary">
+                                <i className='bx bxs-user ml-2'></i>{user ? ' '+user : ' Guest'}
+                            </li>
+                        </div>
                         <li className="nav-item mr-2">
-                            <NavLink to={"/signUp"} className={'nav-link btn btn-primary text-white ' + ((status) => (status.isActive ? 'active' : ''))}>
-                                SignUp
+                            <NavLink onClick={() => user ? handleLogout() : navigate('/signup')} className={'nav-link btn btn-primary text-white ' + ((status) => (status.isActive ? 'active' : ''))}>
+                                {user ? 'Signout' : 'Signup'}
                             </NavLink>
                         </li>
-                        <li className="nav-item mr-2">
-                            <NavLink to={"/signUp"} className={'nav-link' + ((status) => (status.isActive ? 'active' : ''))}>
-                                <i className="bi bi-cart4"></i>
-                            </NavLink>
-                        </li>
+                        <div className='d-flex justify-content-center align-items-center mr-3' onClick={() => setCart(true)}>
+                            <li className="nav-item mr-2 position-relative">
+                                <NavLink to={"#"} className={'nav-link' + ((status) => (status.isActive ? ' active' : ''))}>
+                                    <i className='bx bx-cart-alt h4'></i>
+                                    <span className="cart-item-count position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary text-white">
+                                        3
+                                    </span>
+                                </NavLink>
+                            </li>
+                        </div>
                     </ul>
-                    <form className='form-inline my-2 my-lg-0'>
-                        <input className="form-control mr-sm-2" type="search" placeholder="Search" value={searchInput} onChange={(e) => setSearchInput(e.target.value)} aria-label="Search" />
-                        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
                 </div>
             </nav>
             <div>
@@ -97,6 +125,37 @@ const Header = () => {
                     </div>
                 ) : null}
             </div>
+            {cart ? (
+                <div className="position-relative">
+                    <OutsideClickHandler onOutsideClick={() => setCart(false)}>
+                        <div id="cart-modal" className="position-absolute right-0 top-0 w-25 bg-white border shadow-sm p-4" style={{ zIndex: 1, right: 0 }}>
+                            <div id="cart-header" className="d-flex justify-content-between align-items-center mb-4">
+                                <h4>Cart</h4>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" onClick={() => setCart(false)} aria-label="Close"><i className='bx bx-x'></i></button>
+                            </div>
+                            <div id="cart-body" className="overflow-auto" style={{ maxHeight: '300px' }}>
+                                {cartItems.length > 0 ? cartItems.map((item) => (
+                                    <div className="d-flex align-items-center mb-4 border-bottom pb-2">
+                                        <div>
+                                            <h5><Link to={'/productPage/' + item._id}>{item.name}</Link></h5>
+                                            {/* <p>Quantity: {item.quantity}</p> */}
+                                            <p>Price: ${item.price}</p>
+                                        </div>
+                                    </div>
+                                )) : (
+                                    <div className="text-center">
+                                        <h3>Your cart is empty</h3>
+                                    </div>
+                                )}
+                            </div>
+                            <div id="cart-footer" className="d-flex justify-content-between align-items-center mt-4">
+                                <h4>Total: ${totalPrice}</h4>
+                                <button className="btn btn-primary">Checkout</button>
+                            </div>
+                        </div>
+                    </OutsideClickHandler>
+                </div>
+            ) : null}
         </div >
     )
 }

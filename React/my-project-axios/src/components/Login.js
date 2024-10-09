@@ -1,29 +1,40 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 const Login = () => {
+    const params = useParams()
     const navigate = useNavigate()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
     const [errors, setErrors] = useState([]);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        // Example validation (you can replace this with actual API call)
-        if (!email || !password) {
-            setErrors([{ msg: 'Email and password are required' }]);
-            return;
+    useEffect(() => {
+        if (params.msg) {
+            setErrors([{ msg: params.msg }]);
         }
+    }, [])
 
-        // Reset errors after submission
-        setErrors([]);
-        setMessage('Form submitted successfully');
-
-        // API call logic can be added here (e.g., fetch or axios for POST request)
-        console.log({ email, password });
-        navigate('/')
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        try {
+            if (!email || !password) {
+                setErrors([{ msg: 'Email and password are required' }])
+                return;
+            }
+            const userLogin = await axios.post('http://localhost:5000/api/login', { email, password })
+            setErrors([])
+            setMessage('Form submitted successfully')
+            console.log(userLogin.data.token)
+            localStorage.setItem('token', userLogin.data.token)
+            localStorage.setItem('email', userLogin.data.email)
+            axios.defaults.headers.common['Authorization'] = `Bearer ${userLogin.data.token}`
+            navigate('/')
+        } catch (error) {
+            // setErrors([{ msg: error.response.data.message || error.response.data.errors[0].msg }]);
+            console.log(error)
+        }
     };
 
     return (
@@ -39,6 +50,7 @@ const Login = () => {
                         id="email"
                         placeholder="Enter email"
                         value={email}
+                        required
                         onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
@@ -51,6 +63,7 @@ const Login = () => {
                         id="password"
                         placeholder="Enter password"
                         value={password}
+                        required
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>

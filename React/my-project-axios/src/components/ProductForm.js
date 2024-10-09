@@ -58,6 +58,12 @@ const ProductForm = () => {
         }
     }
 
+    useEffect(() => {
+        if (!localStorage.getItem('token')) {
+            navigate('/login/You are not Authorized')
+        }
+    }, [])
+
     return (
         <div>
             <Header />
@@ -113,7 +119,7 @@ const ProductForm = () => {
                     </div>
                     <input
                         type="submit"
-                        value="Submit"
+                        value={isUpdate ? 'Update Product' : 'Create Product'}
                         className="btn btn-primary btn-block"
                     />
                 </form>

@@ -22,11 +22,13 @@ app.use(session({
   saveUninitialized: true,
 }));
 
+
 app.use(cors({
-  origin: 'http://localhost:3000', // allow requests from this frontend origin
+  origin: 'http://localhost:3000',
   methods: 'GET,POST,PUT,DELETE',
-  allowedHeaders: ['Content-Type'] // allow the Content-Type header in requests
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
 
 app.use('/api', apiRouter);// set up for api route
 

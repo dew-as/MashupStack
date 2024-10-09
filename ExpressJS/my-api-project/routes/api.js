@@ -15,112 +15,98 @@ router.post('/signup', [
   // Add validation rules here
   check('email')
     .matches(/^[a-zA-Z0-9._%+-]+@\w+\.\w+$/)
-    .withMessage('Invalid email domain. Only @req.params.id is allowed'),
+    .withMessage('Invalid email domain. Only @(link unavailable) is allowed'),
   check('password')
     .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)
     .withMessage('Password must be at least 8 characters long, contain at least one lowercase letter, one uppercase letter, one number, and one special character')
 ], (req, res) => {
-  const { email, password, confirmPassword } = req.body;
-  const user = new User({ email, password })
-  const validationError = user.validateSync();
-  const error = validationResult(req);
-  if (!error.isEmpty()) {
-    // There are validation errors, send error response
-    res.status(422).json({ errors: error.array() });
-  } else if (password !== confirmPassword) {
-    // Password and confirm password do not match
-    res.status(422).json({ message: 'Password and Confirm Password do not match' });
-  } else if (validationError) {
-    // Validation error
-    res.status(422).json({ errors: validationError.errors });
-  } else {
-    // Check if the username is already taken
-    User.findOne({ email })
-      .then(existingUser => {
-        if (existingUser) {
-          res.status(409).json({ message: 'Email already taken' });
-        } else {
-          // Hash the password using bcrypt
-          return bcrypt.hash(password, 10)
+
+  try {
+    const { email, password, confirmPassword } = req.body;
+    const user = new User({ email, password });
+    console.log(user);
+
+    const validationError = user.validateSync();
+    console.log(validationError);
+
+    if (validationError) {
+      return res.status(422).json({ errors: validationError.errors });
+    }
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+
+    if (password !== confirmPassword) {
+      return res.status(422).json({ message: 'Password and Confirm Password do not match' });
+    }
+
+    User.findOne({ email }).then(existingUser => {
+      if (existingUser) {
+        return res.status(409).json({ message: 'Email already taken' });
+      }
+
+      bcrypt.hash(password, 10).then(hashedPassword => {
+        const signupUser = new User({ email, password: hashedPassword });
+        if (email === 'dewas@gmail.com') {
+          signupUser.role = 'admin';
         }
-      })
-      .then(hashedPassword => {
-        // Create a signup user in MongoDB
-        if (email == 'dewas@req.params.id') {
-          const signupUser = new User({ email, password: hashedPassword, role: 'admin' });
-          return signupUser.save();
-        } else {
-          const signupUser = new User({ email, password: hashedPassword });
-          return signupUser.save();
-        }
-      })
-      .then(() => {
-        // Send success response
+        return signupUser.save();
+      }).then(() => {
         res.status(201).json({ message: 'User created successfully' });
-      })
-      .catch(error => {
+      }).catch(error => {
         console.error(error);
         res.status(500).json({ message: 'Server Error' });
       });
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
   }
-})
+});
+
 
 /* GET home page. */
 router.get('/login', (req, res) => {
   res.status(200).json({ message: "Login page" });
 })
 
-router.post('/login', [
-  // Add validation rules here
-  check('email')
-    .matches(/^[a-zA-Z0-9._%+-]+@\w+\.\w+$/)
-    .withMessage('Invalid email domain. Only @req.params.id is allowed'),
-  check('password')
-    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/)
-    .withMessage('Password must be at least 8 characters long, contain at least one lowercase letter, one uppercase letter, one number, and one special character')
-], function (req, res) {
-  // Validate the request
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    // There are validation errors, send error response
-    res.status(422).json({ errors: errors.array() });
-  } else {
-    const { email, password } = req.body;
-    let foundUser;
-    // Declare foundUser here
-    User.findOne({ email })
-      .then(user => {
-        console.log(user);
-        if (!user) {
-          res.status(422).json({ message: 'Incorrect Email Address.' });
-        }
-        foundUser = user; // Assign user to foundUser
-        return bcrypt.compare(password, user.password);
-      })
-      .then(isPasswordValid => {
-        if (!isPasswordValid) {
-          res.status(422).json({ message: 'Incorrect password.' });
-        } else {
-          // Set user's ID and email in the session
-          const token = jwt.sign({ userId: foundUser._id, userRole: foundUser.role }, process.env.JWT_SECRET = generateSecretKey(), { expiresIn: '1h' });
-          res.status(200).json({ token, email: foundUser.email, role: foundUser.role, userId: foundUser._id });
-        }
-      })
-      .catch(error => {
-        console.error(error);
-        res.status(500).json({ message: 'Internal Server Error' });
-      });
-  }
+router.post('/login', function (req, res) {
+
+  const { email, password } = req.body;
+
+  User.findOne({ email })
+    .then(user => {
+      if (!user) {
+        return res.status(422).json({ message: 'No user Found ! Incorrect email address' });
+      }
+
+      return bcrypt.compare(password, user.password)
+        .then(isPasswordValid => {
+          if (!isPasswordValid) {
+            return res.status(422).json({ message: 'Incorrect password.' });
+          }
+          const token = jwt.sign({ userId: user._id, userRole: user.role }, process.env.JWT_SECRET = generateSecretKey(), { expiresIn: '1h' });
+          return res.status(200).json({ token, email: user.email, role: user.role, userId: user._id });
+        })
+        .catch(error => {
+          console.error(error);
+          return res.status(500).json({ message: 'Internal Server Error' });
+        });
+    })
+    .catch(error => {
+      console.error(error);
+      return res.status(500).json({ message: 'Internal Server Error' });
+    });
 });
 
-//route for logout
 router.get('/logout', (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       console.log(err);
       res.status(500).json({ message: 'Error' });
     } else {
-      res.clearCookie('session');
       res.status(200).json({ message: 'Logged out successfully' });
     }
   });

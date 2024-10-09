@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -9,22 +10,23 @@ const Signup = () => {
     const [message, setMessage] = useState('');
     const [error, setError] = useState([]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // You can replace this part with your actual form submission logic
-        if (password !== confirmPassword) {
-            setError([{ msg: 'Passwords do not match' }]);
-            return;
+        try {
+            const result = await axios.post('http://localhost:5000/api/signup', { email, password, confirmPassword })
+            console.log(result)
+            setError([])
+            setMessage('Form submitted successfully');
+            navigate('/login')
+        } catch (error) {
+            if (error.response?.data?.errors) {
+                const errorMessages = Object.values(error.response.data.errors).map((err) => err.message || err.msg);
+                setError(errorMessages.map((msg) => ({ msg })));
+            } else {
+                setError([{ msg: error.response?.data?.message || error.message }]);
+            }
+            console.log(error);
         }
-
-        // Form submission logic (e.g., send a request to the server)
-        console.log({ email, password, confirmPassword });
-
-        // Reset errors and message after submission or handling
-        setError([]);
-        setMessage('Form submitted successfully');
-        navigate('/login')
     };
 
     return (
@@ -56,6 +58,7 @@ const Signup = () => {
                         name="email"
                         className="form-control"
                         value={email}
+
                         onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
@@ -68,6 +71,7 @@ const Signup = () => {
                         name="password"
                         className="form-control"
                         value={password}
+                        required
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
@@ -80,6 +84,7 @@ const Signup = () => {
                         name="confirmPassword"
                         className="form-control"
                         value={confirmPassword}
+                        required
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                 </div>
