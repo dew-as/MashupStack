@@ -1,6 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { setUser } from '../store/authSlice';
+import checkGuest from './auth/checkGuest';
 
 const Login = () => {
     const params = useParams()
@@ -9,6 +12,8 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
     const [errors, setErrors] = useState([]);
+    const dispatch = useDispatch()
+    var user = useSelector(store => store.auth.user);
 
     useEffect(() => {
         if (params.msg) {
@@ -27,13 +32,11 @@ const Login = () => {
             setErrors([])
             setMessage('Form submitted successfully')
             console.log(userLogin.data.token)
-            localStorage.setItem('token', userLogin.data.token)
-            localStorage.setItem('email', userLogin.data.email)
-            axios.defaults.headers.common['Authorization'] = `Bearer ${userLogin.data.token}`
+            dispatch(setUser(userLogin.data))
             navigate('/')
         } catch (error) {
-            // setErrors([{ msg: error.response.data.message || error.response.data.errors[0].msg }]);
             console.log(error)
+            setErrors([{ msg: error.response.data.message || error.response.data.errors[0].msg }]);
         }
     };
 
@@ -92,4 +95,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default checkGuest(Login);

@@ -1,17 +1,19 @@
 import React from 'react';
-import Header from '../Header';
+import Header from './Header';
+import Footer from './Footer';
 
 function Aboutus() {
     return (
         <div>
             <Header />
-            <section className="container mt-5">
+            <section className="container" style={{marginTop:'80px'}}>
                 <h1 className="text-center mb-4">About Us</h1>
 
                 <div className="row">
                     <div className="col-lg-6">
                         <img
-                            src="image-url" // Replace with the actual image URL
+                            style={{ width: '400px', height: '200px' }}
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVuXYeg8BmaRDeBBzzblL-C8RPVXEVi26zsw&s" // Replace with the actual image URL
                             alt="About Us"
                             className="img-fluid mb-4"
                         />
@@ -71,9 +73,10 @@ function Aboutus() {
                         <div className="row">
                             <div className="col-lg-3">
                                 <img
-                                    src="image-url" // Replace with actual image URL
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM6zZRIiqFzMe06aoWY91fEwQizqFe1AAFkQ&s" // Replace with actual image URL
                                     alt="Team Member 1"
                                     className="img-fluid mb-4"
+                                    style={{ width: '300px', height: '300px' }}
                                 />
                                 <h3>John Doe</h3>
                                 <p>CEO</p>
@@ -81,9 +84,10 @@ function Aboutus() {
 
                             <div className="col-lg-3">
                                 <img
-                                    src="image-url" // Replace with actual image URL
+                                    src="https://www.zmo.ai/wp-content/uploads/2023/11/ImgCreator.ai-realism-realistic-realphoto-photography-portrait-handsome-man-black-eyes-suit-hat-s.webp" // Replace with actual image URL
                                     alt="Team Member 2"
                                     className="img-fluid mb-4"
+                                    style={{ width: '300px', height: '300px' }}
                                 />
                                 <h3>Jane Doe</h3>
                                 <p>Marketing Manager</p>
@@ -91,9 +95,10 @@ function Aboutus() {
 
                             <div className="col-lg-3">
                                 <img
-                                    src="image-url" // Replace with actual image URL
+                                    src="https://preview.redd.it/qm2eo6qvlot51.jpg?width=1080&crop=smart&auto=webp&s=513e08770f2991d08fbcb622860ed084845ed0a9" // Replace with actual image URL
                                     alt="Team Member 3"
                                     className="img-fluid mb-4"
+                                    style={{ width: '300px', height: '300px' }}
                                 />
                                 <h3>Bob Smith</h3>
                                 <p>Sales Manager</p>
@@ -101,9 +106,10 @@ function Aboutus() {
 
                             <div className="col-lg-3">
                                 <img
-                                    src="image-url" // Replace with actual image URL
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkISvAQKsjJZFcVduwQschj8Ur1c8y7TPj2kFC3fCBIfg4A0_BrjKZTFfNhZPRsnhDREc&usqp=CAU" // Replace with actual image URL
                                     alt="Team Member 4"
                                     className="img-fluid mb-4"
+                                    style={{ width: '300px', height: '300px' }}
                                 />
                                 <h3>Alice Johnson</h3>
                                 <p>Customer Support</p>
@@ -112,6 +118,7 @@ function Aboutus() {
                     </div>
                 </div>
             </section>
+            <Footer />
         </div>
     )
 }

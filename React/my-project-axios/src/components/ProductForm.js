@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Header from '../Header';
-import axios from 'axios';
+import Header from './Header';
+import Footer from './Footer';
+import checkAuth from './auth/checkAuth';
+import axiosConfig from '../axiosConfig'
 
 const ProductForm = () => {
     let params = useParams()
@@ -19,7 +21,7 @@ const ProductForm = () => {
         if (params.id) {
             (async () => {
                 try {
-                    const result = await axios.get('http://localhost:5000/api/store/updateProduct/' + params.id)
+                    const result = await axiosConfig.get('/store/updateProduct/' + params.id)
                     console.log(result.data)
                     setProductData(result.data.item)
                     setIsUpdate(true)
@@ -35,7 +37,7 @@ const ProductForm = () => {
         const product = productData;
         if (product) {
             try {
-                const result = await axios.post('http://localhost:5000/api/store', product)
+                const result = await axiosConfig.post('/store', product)
                 console.log(result);
                 navigate('/productsList');
             } catch (error) {
@@ -49,7 +51,7 @@ const ProductForm = () => {
         const product = productData;
         if (product) {
             try {
-                const result = await axios.put('http://localhost:5000/api/store/updateProduct/' + params.id, product)
+                const result = await axiosConfig.put('/store/updateProduct/' + params.id, product)
                 console.log(result);
                 navigate('/productsList');
             } catch (error) {
@@ -58,16 +60,10 @@ const ProductForm = () => {
         }
     }
 
-    useEffect(() => {
-        if (!localStorage.getItem('token')) {
-            navigate('/login/You are not Authorized')
-        }
-    }, [])
-
     return (
         <div>
             <Header />
-            <div className="container mt-5">
+            <div className="container" style={{ marginTop: '80px' }}>
                 <h1 className="text-center mb-4">{isUpdate ? 'Edit Product' : 'Add Product'}</h1>
                 <form onSubmit={isUpdate ? handleUpdate : handleSubmit}>
                     <div className="form-group">
@@ -135,8 +131,9 @@ const ProductForm = () => {
                     </div>
                 )}
             </div>
+            <Footer />
         </div>
     );
 };
 
-export default ProductForm;
+export default checkAuth(ProductForm);
