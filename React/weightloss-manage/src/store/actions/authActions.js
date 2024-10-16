@@ -10,7 +10,7 @@ export const authSlice = createSlice({
     reducers: {
         registerUser: (state, action) => {
             // Simulated registration logic
-            state.user = action.payload;
+            state.error = null;
             window.localStorage.setItem('user', JSON.stringify(action.payload));
         },
         loginUser: (state, action) => {

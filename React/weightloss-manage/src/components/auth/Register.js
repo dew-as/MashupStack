@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../../store/actions/authActions'; // Import the action
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Register = () => {
     const [name, setName] = useState('');
@@ -63,6 +63,10 @@ const Register = () => {
                                 </div>
                                 <button type="submit" className="btn btn-primary w-100">Register</button>
                             </form>
+                            <div className='text-center d-block' >
+                                <Link className='d-block' to={'/login'}>Login</Link>
+                                <Link className='d-block' to={'/'}>Go Home -&gt;</Link>
+                            </div>
                         </div>
                     </div>
                 </div>

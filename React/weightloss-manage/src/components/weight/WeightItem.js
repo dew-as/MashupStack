@@ -23,7 +23,7 @@ const WeightItem = ({ weight }) => {
 
     return (
         <tr>
-            <td>{moment(weight.date).format('YYYY-MM-DD')}</td>
+            <td>{moment(weight.date).format('YYYY-MM-DD h:mm:ss A')}</td>
             <td>
                 {isEditing ? (
                     <input
@@ -40,12 +40,12 @@ const WeightItem = ({ weight }) => {
                 {isEditing ? (
                     <>
                         <button className="btn btn-success me-2" onClick={handleSave}>Save</button>
-                        <button className="btn btn-danger" onClick={() => setIsEditing(false)}>Cancel</button>
+                        <button className="btn btn-danger ml-3" onClick={() => setIsEditing(false)}>Cancel</button>
                     </>
                 ) : (
                     <>
                         <button className="btn btn-primary me-2" onClick={handleEdit}>Edit</button>
-                        <button className="btn btn-danger" onClick={handleDelete}>Delete</button>
+                        <button className="btn btn-danger ml-3" onClick={handleDelete}>Delete</button>
                     </>
                 )}
             </td>

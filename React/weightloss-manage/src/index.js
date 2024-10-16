@@ -6,12 +6,15 @@ import { Provider } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
 import router from './router';
 import store from './store/store';
+import AutoLogin from './components/auth/Autologin';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Provider store={store} >
-    <RouterProvider router={router} />
+  <Provider store={store}>
+    <AutoLogin>
+      <RouterProvider router={router} />
+    </AutoLogin>
   </Provider>
 );
 

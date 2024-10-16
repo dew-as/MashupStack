@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser, clearError } from '../../store/actions/authActions'; // Import the login and clearError actions
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-  const [error, setError] = useState(useSelector((state) => state.auth.error))
+  const error = useSelector((state) => state.auth.error);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const navigate = useNavigate()
   const params = useParams()
   console.log(params.msg);
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(clearError()); // Clear previous errors before submitting
+    await dispatch(clearError()); // Clear previous errors before submitting
     dispatch(loginUser({ email, password })); // Dispatch login action with user credentials
   };
 
@@ -26,12 +26,6 @@ const Login = () => {
       navigate('/'); // Redirect to home page
     }
   }, [isAuthenticated, navigate]); // Run this effect whenever isAuthenticated changes
-
-  useEffect(() => {
-    if (params) {
-      setError(params.msg)
-    }
-  }, [params])
 
   return (
     <div className="container mt-5">
@@ -43,6 +37,7 @@ const Login = () => {
 
               {/* Show an error message if there are any errors */}
               {error && <div className="alert alert-danger">{error}</div>}
+              {!error && params.msg && <div className="alert alert-danger">{params.msg}</div>}
 
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
@@ -71,6 +66,10 @@ const Login = () => {
                 </div>
                 <button type="submit" className="btn btn-primary w-100">Login</button>
               </form>
+              <div className='text-center d-block' >
+                <Link className='d-block' to={'/register'}>Register</Link>
+                <Link className='d-block' to={'/'}>Go Home -&gt;</Link>
+              </div>
             </div>
           </div>
         </div>

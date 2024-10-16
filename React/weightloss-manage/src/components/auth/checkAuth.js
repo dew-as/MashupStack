@@ -5,7 +5,8 @@ import { useNavigate, useLocation } from "react-router-dom"
 export const checkAuth = (Component) => {
     function Wrapper(props) {
         // var user = useSelector(store=>store.auth.user);
-        const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+        // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+        const isAuthenticated = localStorage.getItem('user')
         var navigate = useNavigate();
 
         useEffect(() => {

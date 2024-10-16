@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import moment from 'moment';
-import { v4 as uuidv4 } from 'uuid'; // Import UUID for unique IDs
+import { v4 as uuidv4 } from 'uuid';
 
 export const weightSlice = createSlice({
     name: 'weight',
@@ -19,7 +19,7 @@ export const weightSlice = createSlice({
             {
                 id: uuidv4(),
                 date: "2024-10-14T04:49:53.719486Z",
-                weight: 76
+                weight: 42
             },
             {
                 id: uuidv4(),
@@ -31,8 +31,8 @@ export const weightSlice = createSlice({
                 date: "2024-10-12T04:49:53.719501Z",
                 weight: 68
             }
-        ],  // List of weights with unique IDs
-        error: null,  // Error message for invalid operations
+        ],
+        error: null,
     },
     reducers: {
         addWeight: (state, action) => {
@@ -40,7 +40,6 @@ export const weightSlice = createSlice({
             const today = moment().startOf('day');
             const existingWeight = state.weights.find(w => moment(w.date).isSame(today, 'day'));
 
-            // Restriction: Limit to 5 weights
             if (state.weights.length >= 5) {
                 state.error = 'Cannot add more than 5 weights.';
                 return;
@@ -50,9 +49,9 @@ export const weightSlice = createSlice({
                 state.error = 'Weight already added for today';
             } else {
                 state.weights.push({
-                    id: uuidv4(), // Add unique ID here
+                    id: uuidv4(),
                     weight: weight,
-                    date: moment().toISOString()  // Store current time as date
+                    date: moment().toISOString()
                 });
                 state.error = null;
             }
@@ -74,8 +73,17 @@ export const weightSlice = createSlice({
             const endWeight = state.weights.find(w => moment(w.date).isSame(endDate, 'day'));
 
             if (startWeight && endWeight) {
-                const weightLoss = startWeight.weight - endWeight.weight;
-                state.error = `Weight loss between ${moment(startDate).format('YYYY-MM-DD')} and ${moment(endDate).format('YYYY-MM-DD')} is ${weightLoss} kg.`;
+                const weightDifference = endWeight.weight - startWeight.weight;
+
+                if (weightDifference < 0) {
+                    const weightLoss = Math.abs(weightDifference);
+                    state.error = `Weight loss between ${moment(startDate).format('YYYY-MM-DD')} and ${moment(endDate).format('YYYY-MM-DD')} is ${weightLoss} kg.`;
+                } else if (weightDifference > 0) {
+                    const weightGain = weightDifference;
+                    state.error = `Weight gain between ${moment(startDate).format('YYYY-MM-DD')} and ${moment(endDate).format('YYYY-MM-DD')} is ${weightGain} kg.`;
+                } else {
+                    state.error = 'No change in weight between the selected dates.';
+                }
             } else {
                 state.error = 'Invalid date range or no weights found for the selected dates.';
             }
