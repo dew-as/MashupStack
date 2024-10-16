@@ -1,10 +1,9 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const checkGuest = (Component) => {
     function Wrapper(props) {
-        const user = useSelector((store) => store.auth.user);
+        var user = localStorage.getItem('user');
         const navigate = useNavigate();
 
         useEffect(() => {

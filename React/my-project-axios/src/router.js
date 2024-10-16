@@ -7,6 +7,8 @@ import ProductForm from "./components/ProductForm";
 import ProductsList from "./components/ProductsList";
 import Home from "./components/Home";
 import Cart from "./components/Cart";
+import AdminPanel from "./components/AdminPanel";
+import Unauthorized from "./components/401";
 
 const router = createBrowserRouter([
     { path: '', element: <Home /> },
@@ -19,6 +21,8 @@ const router = createBrowserRouter([
     { path: 'productForm/:id', element: <ProductForm /> },
     { path: 'aboutus', element: <Aboutus /> },
     { path: 'checkout', element: <Cart /> },
+    { path: 'adminPanel', element: <AdminPanel /> },
+    { path: '401', element: <Unauthorized /> },
 ]);
 
 export default router;

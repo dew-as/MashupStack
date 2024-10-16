@@ -36,7 +36,7 @@ const Login = () => {
             navigate('/')
         } catch (error) {
             console.log(error)
-            setErrors([{ msg: error.response.data.message || error.response.data.errors[0].msg }]);
+            setErrors([{ msg: error.response.data.message || error.response.data.errors[0].msg || 'Failed to login user. Please contact admin' }]);
         }
     };
 

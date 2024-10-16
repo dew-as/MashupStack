@@ -86,6 +86,11 @@ const Header = () => {
                                         Products
                                     </NavLink>
                                 </li>
+                                <li className="nav-item">
+                                    <NavLink to={"/adminPanel"} className={'nav-link ' + ((status) => (status.isActive ? 'active' : ''))}>
+                                        Admin Panel
+                                    </NavLink>
+                                </li>
                                 <form className='form-inline my-2 my-lg-0' onSubmit={(e) => e.preventDefault()}>
                                     <input className="form-control mr-sm-2" type="search" placeholder="Search" value={searchInput} onChange={(e) => setSearchInput(e.target.value)} aria-label="Search" />
                                 </form>
