@@ -30,6 +30,31 @@ export const weightSlice = createSlice({
                 id: uuidv4(),
                 date: "2024-10-12T04:49:53.719501Z",
                 weight: 68
+            },
+            {
+                id: uuidv4(),
+                date: "2024-10-10T04:49:53.719400Z",
+                weight: 58
+            },
+            {
+                id: uuidv4(),
+                date: "2024-10-09T04:49:53.719410Z",
+                weight: 71
+            },
+            {
+                id: uuidv4(),
+                date: "2024-10-08T04:49:53.719420Z",
+                weight: 47
+            },
+            {
+                id: uuidv4(),
+                date: "2024-10-07T04:49:53.719430Z",
+                weight: 55
+            },
+            {
+                id: uuidv4(),
+                date: "2024-10-06T04:49:53.719440Z",
+                weight: 62
             }
         ],
         error: null,
@@ -39,11 +64,6 @@ export const weightSlice = createSlice({
             const { weight } = action.payload;
             const today = moment().startOf('day');
             const existingWeight = state.weights.find(w => moment(w.date).isSame(today, 'day'));
-
-            if (state.weights.length >= 5) {
-                state.error = 'Cannot add more than 5 weights.';
-                return;
-            }
 
             if (existingWeight) {
                 state.error = 'Weight already added for today';

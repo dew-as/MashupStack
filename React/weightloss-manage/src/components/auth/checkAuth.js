@@ -6,10 +6,12 @@ export const checkAuth = (Component) => {
     function Wrapper(props) {
         // var user = useSelector(store=>store.auth.user);
         // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-        const isAuthenticated = localStorage.getItem('user')
+        const isAuthenticated = JSON.parse(localStorage.getItem('isAuth'))
         var navigate = useNavigate();
 
         useEffect(() => {
+            console.log(isAuthenticated);
+
             if (!isAuthenticated) {
                 navigate('/login/You are not authenticated');
             }

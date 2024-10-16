@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeUser } from '../../store/actions/authActions';
+import { logOutUser } from '../../store/actions/authActions';
 
 const Header = () => {
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     const dispatch = useDispatch()
 
     const handleLogout = () => {
-        dispatch(removeUser())
+        dispatch(logOutUser())
     }
 
     return (

@@ -20,18 +20,20 @@ export const authSlice = createSlice({
             if (storedUser && storedUser.email === email && storedUser.password === password) {
                 state.user = storedUser;
                 state.isAuthenticated = true;
+                window.localStorage.setItem('isAuth', JSON.stringify(true));
             } else {
                 state.error = 'Invalid credentials';
             }
         },
-        removeUser: (state) => {
+        logOutUser: (state) => {
             state.user = null;
             state.isAuthenticated = false;
-            window.localStorage.removeItem('user');
+            window.localStorage.removeItem('isAuth');
         },
         setUserFromLocalStorage: (state) => {
+            const isAuth = window.localStorage.getItem('isAuth');
             const user = window.localStorage.getItem('user');
-            if (user) {
+            if (isAuth) {
                 state.user = JSON.parse(user);
                 state.isAuthenticated = true;
             } else {
@@ -45,6 +47,6 @@ export const authSlice = createSlice({
     },
 });
 
-export const { setUser, removeUser, setUserFromLocalStorage, registerUser, loginUser, clearError } = authSlice.actions;
+export const { setUser, logOutUser, setUserFromLocalStorage, registerUser, loginUser, clearError } = authSlice.actions;
 
 export default authSlice.reducer;
