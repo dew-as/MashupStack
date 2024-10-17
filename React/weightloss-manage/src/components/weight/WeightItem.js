@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { editWeight, deleteWeight } from '../../store/actions/weightActions'; // Import actions
 import moment from 'moment';
+import { useNavigate } from 'react-router-dom';
 
-const WeightItem = ({ weight }) => {
+const WeightItem = ({ weight, setCurrentPage, currentPage }) => {
     const dispatch = useDispatch();
     const [isEditing, setIsEditing] = useState(false);
     const [newValue, setNewValue] = useState(weight.weight); // Update to weight.weight
+    const navigate = useNavigate()
 
     const handleEdit = () => {
         setIsEditing(true);
@@ -17,8 +19,9 @@ const WeightItem = ({ weight }) => {
         setIsEditing(false);
     };
 
-    const handleDelete = () => {
-        dispatch(deleteWeight({ id: weight.id })); // Dispatch delete action
+    const handleDelete = async () => {
+        await dispatch(deleteWeight({ id: weight.id })); // Dispatch delete action
+        currentPage === 0 ? setCurrentPage(currentPage + 1) : setCurrentPage(currentPage - 1)
     };
 
     return (

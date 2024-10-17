@@ -27,7 +27,7 @@ const WeightList = () => {
                 </thead>
                 <tbody>
                     {weights.slice(currentPage * weightsPerPage, (currentPage + 1) * weightsPerPage).map((weight) => (
-                        <WeightItem key={weight.id} weight={weight} />
+                        <WeightItem key={weight.id} weight={weight} setCurrentPage={setCurrentPage} currentPage={currentPage} />
                     ))}
                 </tbody>
             </table>
